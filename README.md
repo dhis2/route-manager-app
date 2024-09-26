@@ -19,10 +19,8 @@ It does not _yet_ support:
 
 These should come as improvements in the near future.
 
-
 This project was bootstrapped with [DHIS2 Application Platform](https://github.com/dhis2/app-platform).
-
 
 # Deploying the app
 
-The app is not yet deployed on App Hub. In order to install it, you can run `yarn && yarn build` and install the resulting zip file (in `build/bundle` folder) using the `App Management` app in DHIS2. 
+The app is not yet deployed on App Hub. In order to install it, you can run `yarn && yarn build` and install the resulting zip file (in `build/bundle` folder) using the `App Management` app in DHIS2.
