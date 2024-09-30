@@ -1,3 +1,10 @@
+## [100.0.1](https://github.com/dhis2/route-manager-app/compare/v100.0.0...v100.0.1) (2024-09-30)
+
+
+### Bug Fixes
+
+* force a release to apphub ([65396bf](https://github.com/dhis2/route-manager-app/commit/65396bf5caf3ac28f1fb297216811613706504ed))
+
 # [100.0.0](https://github.com/dhis2/route-manager-app/compare/v99.9.9...v100.0.0) (2024-09-28)
 
 
