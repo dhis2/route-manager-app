@@ -1,5 +1,5 @@
 const config = {
-    id: '1aae7392-f21e-4d6c-ad4b-90b09257d637',
+    id: '5dbe9ab8-46bd-411e-b22f-905f08a81d78',
     type: 'app',
     name: 'route-manager',
     title: 'Route Manager',
