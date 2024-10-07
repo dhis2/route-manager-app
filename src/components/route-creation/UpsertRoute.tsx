@@ -10,17 +10,20 @@ import {
     InputField,
 } from '@dhis2/ui'
 import React, { useState } from 'react'
-import classes from './App.module.css'
-import { ApiRouteData } from './types/RouteInfo'
+import classes from '../../App.module.css'
+import {
+    ApiRouteCreationPayload,
+    ApiRouteData,
+    RouteAuthConfig,
+} from '../../types/RouteInfo'
+import RouteAuthAdmin from './RouteAuthAdmin'
 
 const createRouteMutation = {
     resource: 'routes',
     type: 'create' as const,
     data: ({ data }) => ({
-        code: data.code,
-        name: data.name,
+        ...data,
         disabled: false,
-        url: data.url,
     }),
 }
 
@@ -29,10 +32,8 @@ const updateRouteMutation = {
     type: 'update' as const,
     id: ({ id }) => id,
     data: ({ data }) => ({
-        name: data.name,
-        code: data.code,
+        ...data,
         disabled: false,
-        url: data.url,
     }),
 }
 
@@ -50,6 +51,11 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
     const [code, setCode] = useState(route.code ?? '')
     const [name, setName] = useState(route.name ?? '')
     const [urlValue, setValue] = useState(route.url ?? '')
+    const [authConfig, setAuthConfig] = useState<RouteAuthConfig>(route.auth)
+    const [authorities, setAuthorities] = useState<string>(() =>
+        route.authorities?.join(',')
+    )
+    const [loading, setLoading] = useState(false)
 
     const { show } = useAlert(
         ({ type, error }) => {
@@ -82,24 +88,45 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
     // @ts-expect-error("we need the ID to be dynamic, which is allowed but not reflected in the type")
     const [updateRoute] = useDataMutation(updateRouteMutation, options)
 
+    const updateAuthConfig = (update: Partial<RouteAuthConfig>) => {
+        setAuthConfig((data) => {
+            return {
+                ...data,
+                ...update,
+            }
+        })
+    }
     const handeCreateRoute = async () => {
+        setLoading(true)
         try {
+            const data: ApiRouteCreationPayload = { url: urlValue, code, name }
+            if (authConfig && authConfig.type) {
+                data.auth = authConfig
+            }
+
+            if (authorities) {
+                data.authorities = authorities?.split(/[\s,]/)
+            }
+
             if (route?.id) {
                 await updateRoute({
                     id: route.id,
-                    data: { url: urlValue, code, name },
+                    data,
                 })
 
                 onSave()
             } else {
                 await createRoute({
-                    data: { url: urlValue, code, name },
+                    data,
                 })
 
                 onSave()
             }
         } catch (err) {
+            console.log('>>>eee', err)
             show({ type: 'error', message: err.message })
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -111,7 +138,12 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
                     <Button secondary onClick={closeModal}>
                         {i18n.t('Close')}
                     </Button>
-                    <Button primary onClick={handeCreateRoute}>
+                    <Button
+                        loading={loading}
+                        disabled={loading}
+                        primary
+                        onClick={handeCreateRoute}
+                    >
                         {i18n.t('Save Route')}
                     </Button>
                 </ButtonStrip>
@@ -141,6 +173,22 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
                             }
                         )}
                         label={i18n.t('URL for route destination')}
+                    />
+
+                    <RouteAuthAdmin
+                        authConfig={authConfig}
+                        updateAuthConfig={updateAuthConfig}
+                    />
+                    <InputField
+                        value={authorities}
+                        onChange={({ value }) => setAuthorities(value)}
+                        placeholder={i18n.t(
+                            'comma separated list of authorities i.e. MY_AUTHORITY_1,MY_AUTHORITY_2'
+                        )}
+                        label={i18n.t('Authorities')}
+                        helpText={i18n.t(
+                            'Restrict access to cerain authorities'
+                        )}
                     />
                 </div>
             </ModalContent>

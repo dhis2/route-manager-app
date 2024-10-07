@@ -10,9 +10,9 @@ import {
 } from '@dhis2/ui'
 import React, { useState } from 'react'
 import classes from './App.module.css'
+import UpsertRoute from './components/route-creation/UpsertRoute'
 import TestRoute from './TestRoute'
 import { ApiRouteData, WrapQueryResponse } from './types/RouteInfo'
-import UpsertRoute from './UpsertRoute'
 
 import './locales'
 
@@ -114,11 +114,17 @@ const MyApp = () => {
                     <DataTableColumnHeader>
                         {i18n.t('URL')}
                     </DataTableColumnHeader>
+                    <DataTableColumnHeader>
+                        {i18n.t('Authentication')}
+                    </DataTableColumnHeader>
+                    <DataTableColumnHeader>
+                        {i18n.t('Authorities')}
+                    </DataTableColumnHeader>
                     <DataTableColumnHeader></DataTableColumnHeader>
                 </DataTableHead>
                 {allRoutesList?.routes?.routes?.length === 0 && (
                     <DataTableRow>
-                        <DataTableCell colSpan="6">
+                        <DataTableCell colSpan="100%">
                             {i18n.t('No routes configured yet.')}
                         </DataTableCell>
                     </DataTableRow>
@@ -130,6 +136,22 @@ const MyApp = () => {
                             <DataTableCell>{route.code}</DataTableCell>
                             <DataTableCell>{route.name}</DataTableCell>
                             <DataTableCell>{route.url}</DataTableCell>
+                            <DataTableCell>
+                                {route.auth ? (
+                                    <pre>{JSON.stringify(route.auth)}</pre>
+                                ) : (
+                                    'n/a'
+                                )}
+                            </DataTableCell>
+                            <DataTableCell>
+                                {route.authorities?.length ? (
+                                    <pre>
+                                        {JSON.stringify(route.authorities)}
+                                    </pre>
+                                ) : (
+                                    'n/a'
+                                )}
+                            </DataTableCell>
                             <DataTableCell align="right">
                                 <Button
                                     small
