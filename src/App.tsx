@@ -116,6 +116,13 @@ const MyApp = () => {
                     </DataTableColumnHeader>
                     <DataTableColumnHeader></DataTableColumnHeader>
                 </DataTableHead>
+                {allRoutesList?.routes?.routes?.length === 0 && (
+                    <DataTableRow>
+                        <DataTableCell colSpan="6">
+                            {i18n.t('No routes configured yet.')}
+                        </DataTableCell>
+                    </DataTableRow>
+                )}
                 {allRoutesList?.routes?.routes?.map((route) => {
                     return (
                         <DataTableRow key={route.id}>

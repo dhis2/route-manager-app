@@ -41,6 +41,7 @@ const TestRoute: React.FC<TestRouteProps> = ({
     const [body, setBody] = useState<string>()
     const [wildcard, setWildcard] = useState<string>()
     const [result, setResult] = useState<unknown>('')
+    const [loading, setLoading] = useState<boolean>(false)
 
     const engine = useDataEngine()
 
@@ -65,6 +66,7 @@ const TestRoute: React.FC<TestRouteProps> = ({
     const handleTestRoute = async () => {
         try {
             setResult(undefined)
+            setLoading(true)
 
             const resource = `routes/${route.id ?? route.code}/run${
                 wildcard ? `/${wildcard}` : ''
@@ -102,6 +104,8 @@ const TestRoute: React.FC<TestRouteProps> = ({
         } catch (error) {
             console.error(error)
             show({ error })
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -114,7 +118,12 @@ const TestRoute: React.FC<TestRouteProps> = ({
                     <Button secondary onClick={closeModal}>
                         {i18n.t('Close')}
                     </Button>
-                    <Button primary onClick={handleTestRoute}>
+                    <Button
+                        loading={loading}
+                        disabled={loading}
+                        primary
+                        onClick={handleTestRoute}
+                    >
                         {i18n.t('Test Route')}
                     </Button>{' '}
                 </ButtonStrip>
