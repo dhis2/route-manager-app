@@ -1,10 +1,12 @@
-export type AuthScheme = 'http-basic'
+export type AuthScheme = 'http-basic' | 'api-token'
 
-export type RouteAuthConfig = {
-    type: AuthScheme
-    username: string
-    password: string
-}
+export type RouteAuthConfig =
+    | {
+          type: 'http-basic'
+          username: string
+          password: string
+      }
+    | { type: 'api-token'; token: string }
 
 export type ApiRouteData = {
     id: string

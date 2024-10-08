@@ -51,7 +51,9 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
     const [code, setCode] = useState(route.code ?? '')
     const [name, setName] = useState(route.name ?? '')
     const [urlValue, setValue] = useState(route.url ?? '')
-    const [authConfig, setAuthConfig] = useState<RouteAuthConfig>(route.auth)
+    const [authConfig, setAuthConfig] = useState<Partial<RouteAuthConfig>>(
+        route.auth
+    )
     const [authorities, setAuthorities] = useState<string>(() =>
         route.authorities?.join(',')
     )
@@ -87,9 +89,15 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
 
     // @ts-expect-error("we need the ID to be dynamic, which is allowed but not reflected in the type")
     const [updateRoute] = useDataMutation(updateRouteMutation, options)
+    console.log(authConfig)
 
     const updateAuthConfig = (update: Partial<RouteAuthConfig>) => {
         setAuthConfig((data) => {
+            // reset properties if changing auth type
+            if (update.type && update.type !== data.type) {
+                return update
+            }
+
             return {
                 ...data,
                 ...update,

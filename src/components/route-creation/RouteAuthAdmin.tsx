@@ -12,8 +12,8 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
     authConfig = {},
     updateAuthConfig,
 }) => {
-    const { type, username, password } = authConfig
-    const showAuthDetails = !!type
+    const { type } = authConfig
+
     return (
         <>
             <SingleSelectField
@@ -36,22 +36,37 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
                     label="Basic"
                     value="http-basic"
                 ></SingleSelectOption>
+                <SingleSelectOption
+                    label="API Token"
+                    value="api-token"
+                ></SingleSelectOption>
             </SingleSelectField>
-            {showAuthDetails && (
+            {type === 'http-basic' && (
                 <>
                     <InputField
-                        value={username}
+                        value={authConfig.username}
                         onChange={({ value: username }) =>
                             updateAuthConfig({ username })
                         }
                         label={i18n.t('Username')}
                     />
                     <InputField
-                        value={password}
+                        value={authConfig.password}
                         onChange={({ value: password }) =>
                             updateAuthConfig({ password })
                         }
                         label={i18n.t('Password')}
+                    />
+                </>
+            )}
+            {type === 'api-token' && (
+                <>
+                    <InputField
+                        value={authConfig.token}
+                        onChange={({ value: token }) =>
+                            updateAuthConfig({ token })
+                        }
+                        label={i18n.t('Token')}
                     />
                 </>
             )}
