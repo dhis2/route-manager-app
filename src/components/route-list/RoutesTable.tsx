@@ -16,6 +16,7 @@ type RoutesTableProps = {
     showTestRouteModal: (route: ApiRouteData) => void
     showEditRouteModal: (route: ApiRouteData) => void
     deleteRoute: (routeCode: string) => Promise<void>
+    showSharingDialog: (route: ApiRouteData) => void
 }
 
 const RoutesTable: React.FC<RoutesTableProps> = ({
@@ -23,6 +24,7 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
     showTestRouteModal,
     showEditRouteModal,
     deleteRoute,
+    showSharingDialog,
 }) => {
     return (
         <DataTable>
@@ -81,6 +83,12 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
                                 )}
                             </DataTableCell>
                             <DataTableCell align="right">
+                                <Button
+                                    small
+                                    onClick={() => showSharingDialog(route)}
+                                >
+                                    {i18n.t('Sharing')}
+                                </Button>{' '}
                                 <Button
                                     small
                                     onClick={() => showTestRouteModal(route)}

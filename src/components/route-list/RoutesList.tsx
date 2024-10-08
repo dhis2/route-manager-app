@@ -1,6 +1,6 @@
 import { useDataMutation, useDataQuery } from '@dhis2/app-runtime'
 import i18n from '@dhis2/d2-i18n'
-import { Button } from '@dhis2/ui'
+import { Button, SharingDialog } from '@dhis2/ui'
 import React, { useState } from 'react'
 import classes from '../../App.module.css'
 import { UpsertRoute } from '../../components/route-creation'
@@ -25,6 +25,8 @@ const listRoutesQuery = {
 }
 
 const RoutesList = () => {
+    const [sharingDialogId, setSharingDialogId] = useState<string>()
+
     // Todo: update the type for delete mutation
     // @ts-expect-error("the error is because because delete mutation expects hardcoded ID but that's not accurate (it can take a function return a string)
     const [deleteRoute] = useDataMutation(deleteRouteMutation)
@@ -46,6 +48,10 @@ const RoutesList = () => {
 
     const handleShowCreateModal = () => {
         showCreateModal(true)
+    }
+
+    const handleShowSharingDialog = (route: ApiRouteData) => {
+        setSharingDialogId(route.id)
     }
 
     const handleShowTestModal = (route: ApiRouteData) => {
@@ -87,6 +93,16 @@ const RoutesList = () => {
                 <TestRoute route={activeRoute} closeModal={onCloseTestModal} />
             )}
 
+            {sharingDialogId && (
+                <SharingDialog
+                    id={sharingDialogId}
+                    // ToDo: update the type in UI library to accept "route"
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    type={'route' as any}
+                    onClose={() => setSharingDialogId(undefined)}
+                />
+            )}
+
             <div className={classes.actionsStrip}>
                 <Button onClick={handleShowCreateModal}>
                     {i18n.t('Create New Route')}
@@ -97,6 +113,7 @@ const RoutesList = () => {
                 routes={allRoutesList?.routes?.routes}
                 showEditRouteModal={handleEditRoute}
                 showTestRouteModal={handleShowTestModal}
+                showSharingDialog={handleShowSharingDialog}
                 deleteRoute={handleDeleteRoute}
             />
 
