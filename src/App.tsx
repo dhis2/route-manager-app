@@ -3,6 +3,7 @@ import i18n from '@dhis2/d2-i18n'
 import {
     Button,
     DataTable,
+    DataTableBody,
     DataTableRow,
     DataTableCell,
     DataTableHead,
@@ -102,25 +103,27 @@ const MyApp = () => {
             </div>
             <DataTable>
                 <DataTableHead>
-                    <DataTableColumnHeader>
-                        {i18n.t('ID')}
-                    </DataTableColumnHeader>
-                    <DataTableColumnHeader>
-                        {i18n.t('Code')}
-                    </DataTableColumnHeader>
-                    <DataTableColumnHeader>
-                        {i18n.t('Name')}
-                    </DataTableColumnHeader>
-                    <DataTableColumnHeader>
-                        {i18n.t('URL')}
-                    </DataTableColumnHeader>
-                    <DataTableColumnHeader>
-                        {i18n.t('Authentication')}
-                    </DataTableColumnHeader>
-                    <DataTableColumnHeader>
-                        {i18n.t('Authorities')}
-                    </DataTableColumnHeader>
-                    <DataTableColumnHeader></DataTableColumnHeader>
+                    <DataTableRow>
+                        <DataTableColumnHeader>
+                            {i18n.t('ID')}
+                        </DataTableColumnHeader>
+                        <DataTableColumnHeader>
+                            {i18n.t('Code')}
+                        </DataTableColumnHeader>
+                        <DataTableColumnHeader>
+                            {i18n.t('Name')}
+                        </DataTableColumnHeader>
+                        <DataTableColumnHeader>
+                            {i18n.t('URL')}
+                        </DataTableColumnHeader>
+                        <DataTableColumnHeader>
+                            {i18n.t('Authentication')}
+                        </DataTableColumnHeader>
+                        <DataTableColumnHeader>
+                            {i18n.t('Authorities')}
+                        </DataTableColumnHeader>
+                        <DataTableColumnHeader></DataTableColumnHeader>
+                    </DataTableRow>
                 </DataTableHead>
                 {allRoutesList?.routes?.routes?.length === 0 && (
                     <DataTableRow>
@@ -129,53 +132,59 @@ const MyApp = () => {
                         </DataTableCell>
                     </DataTableRow>
                 )}
-                {allRoutesList?.routes?.routes?.map((route) => {
-                    return (
-                        <DataTableRow key={route.id}>
-                            <DataTableCell>{route.id}</DataTableCell>
-                            <DataTableCell>{route.code}</DataTableCell>
-                            <DataTableCell>{route.name}</DataTableCell>
-                            <DataTableCell>{route.url}</DataTableCell>
-                            <DataTableCell>
-                                {route.auth ? (
-                                    <pre>{JSON.stringify(route.auth)}</pre>
-                                ) : (
-                                    'n/a'
-                                )}
-                            </DataTableCell>
-                            <DataTableCell>
-                                {route.authorities?.length ? (
-                                    <pre>
-                                        {JSON.stringify(route.authorities)}
-                                    </pre>
-                                ) : (
-                                    'n/a'
-                                )}
-                            </DataTableCell>
-                            <DataTableCell align="right">
-                                <Button
-                                    small
-                                    onClick={() => handleShowTestModal(route)}
-                                >
-                                    {i18n.t('Test')}
-                                </Button>{' '}
-                                <Button
-                                    small
-                                    onClick={() => handleEditRoute(route)}
-                                >
-                                    {i18n.t('Edit Route')}
-                                </Button>{' '}
-                                <Button
-                                    destructive
-                                    small
-                                    onClick={() => handleDeleteRoute(route.id)}
-                                >
-                                    {i18n.t('Delete')}
-                                </Button>
-                            </DataTableCell>
-                        </DataTableRow>
-                    )
-                })}
+                <DataTableBody>
+                    {allRoutesList?.routes?.routes?.map((route) => {
+                        return (
+                            <DataTableRow key={route.id}>
+                                <DataTableCell>{route.id}</DataTableCell>
+                                <DataTableCell>{route.code}</DataTableCell>
+                                <DataTableCell>{route.name}</DataTableCell>
+                                <DataTableCell>{route.url}</DataTableCell>
+                                <DataTableCell>
+                                    {route.auth ? (
+                                        <pre>{JSON.stringify(route.auth)}</pre>
+                                    ) : (
+                                        'n/a'
+                                    )}
+                                </DataTableCell>
+                                <DataTableCell>
+                                    {route.authorities?.length ? (
+                                        <pre>
+                                            {JSON.stringify(route.authorities)}
+                                        </pre>
+                                    ) : (
+                                        'n/a'
+                                    )}
+                                </DataTableCell>
+                                <DataTableCell align="right">
+                                    <Button
+                                        small
+                                        onClick={() =>
+                                            handleShowTestModal(route)
+                                        }
+                                    >
+                                        {i18n.t('Test')}
+                                    </Button>{' '}
+                                    <Button
+                                        small
+                                        onClick={() => handleEditRoute(route)}
+                                    >
+                                        {i18n.t('Edit Route')}
+                                    </Button>{' '}
+                                    <Button
+                                        destructive
+                                        small
+                                        onClick={() =>
+                                            handleDeleteRoute(route.id)
+                                        }
+                                    >
+                                        {i18n.t('Delete')}
+                                    </Button>
+                                </DataTableCell>
+                            </DataTableRow>
+                        )
+                    })}
+                </DataTableBody>
             </DataTable>
             <div className={classes.tableContainerFooter}>
                 <a
