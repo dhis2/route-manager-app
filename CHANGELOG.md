@@ -1,3 +1,10 @@
+# [100.1.0](https://github.com/dhis2/route-manager-app/compare/v100.0.2...v100.1.0) (2024-10-09)
+
+
+### Features
+
+* support configuring authentication and authorities ([#11](https://github.com/dhis2/route-manager-app/issues/11)) ([4038d3a](https://github.com/dhis2/route-manager-app/commit/4038d3a52d1953eadedb70ab8b13a0af45409251))
+
 ## [100.0.2](https://github.com/dhis2/route-manager-app/compare/v100.0.1...v100.0.2) (2024-09-30)
 
 
