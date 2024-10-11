@@ -7,9 +7,11 @@ import {
     DataTableCell,
     DataTableHead,
     DataTableColumnHeader,
+    IconLaunch16,
 } from '@dhis2/ui'
 import React from 'react'
 import { ApiRouteData } from '../../types/RouteInfo'
+import RouteActions from './RouteActions'
 
 type RoutesTableProps = {
     routes: ApiRouteData[]
@@ -82,32 +84,26 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
                                     'n/a'
                                 )}
                             </DataTableCell>
-                            <DataTableCell align="right">
+                            <DataTableCell
+                                align="right"
+                                style={{ display: 'flex', gap: 10 }}
+                            >
                                 <Button
-                                    small
-                                    onClick={() => showSharingDialog(route)}
-                                >
-                                    {i18n.t('Sharing')}
-                                </Button>{' '}
-                                <Button
+                                    icon={<IconLaunch16 />}
                                     small
                                     onClick={() => showTestRouteModal(route)}
                                 >
-                                    {i18n.t('Test')}
+                                    {i18n.t('Test route')}
                                 </Button>{' '}
-                                <Button
-                                    small
-                                    onClick={() => showEditRouteModal(route)}
-                                >
-                                    {i18n.t('Edit Route')}
-                                </Button>{' '}
-                                <Button
-                                    destructive
-                                    small
-                                    onClick={() => deleteRoute(route.id)}
-                                >
-                                    {i18n.t('Delete')}
-                                </Button>
+                                <RouteActions
+                                    showSharingDialog={() =>
+                                        showSharingDialog(route)
+                                    }
+                                    showEditRouteModal={() =>
+                                        showEditRouteModal(route)
+                                    }
+                                    deleteRoute={() => deleteRoute(route.id)}
+                                />
                             </DataTableCell>
                         </DataTableRow>
                     )

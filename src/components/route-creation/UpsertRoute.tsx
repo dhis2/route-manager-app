@@ -144,13 +144,10 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
     }
 
     return (
-        <Modal>
+        <Modal onClose={closeModal}>
             <ModalTitle>{i18n.t('Route details')}</ModalTitle>
             <ModalActions>
                 <ButtonStrip end>
-                    <Button secondary onClick={closeModal}>
-                        {i18n.t('Close')}
-                    </Button>
                     <Button
                         loading={loading}
                         disabled={loading}

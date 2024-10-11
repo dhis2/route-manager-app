@@ -112,12 +112,9 @@ const TestRoute: React.FC<TestRouteProps> = ({
     const hasWildCardPath = route.url?.endsWith('**')
 
     return (
-        <Modal>
+        <Modal onClose={closeModal}>
             <ModalActions>
                 <ButtonStrip end>
-                    <Button secondary onClick={closeModal}>
-                        {i18n.t('Close')}
-                    </Button>
                     <Button
                         loading={loading}
                         disabled={loading}
