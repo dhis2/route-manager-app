@@ -82,14 +82,19 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
     )
 
     const options = {
-        onComplete: () => show({ type: 'success' }),
-        onError: (error) => show({ type: 'error', error: error.message }),
+        onComplete: () => {
+            show({ type: 'success' })
+            setLoading(false)
+        },
+        onError: (error) => {
+            show({ type: 'error', error: error.message })
+            setLoading(false)
+        },
     }
     const [createRoute] = useDataMutation(createRouteMutation, options)
 
     // @ts-expect-error("we need the ID to be dynamic, which is allowed but not reflected in the type")
     const [updateRoute] = useDataMutation(updateRouteMutation, options)
-    console.log(authConfig)
 
     const updateAuthConfig = (update: Partial<RouteAuthConfig>) => {
         setAuthConfig((data) => {
@@ -109,7 +114,7 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
         try {
             const data: ApiRouteCreationPayload = { url: urlValue, code, name }
             if (authConfig && authConfig.type) {
-                data.auth = authConfig
+                data.auth = authConfig as RouteAuthConfig
             }
 
             if (authorities) {
