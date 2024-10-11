@@ -8,6 +8,7 @@ import {
     DataTableHead,
     DataTableColumnHeader,
     IconLaunch16,
+    Switch,
 } from '@dhis2/ui'
 import React from 'react'
 import { ApiRouteData } from '../../types/RouteInfo'
@@ -19,6 +20,7 @@ type RoutesTableProps = {
     showEditRouteModal: (route: ApiRouteData) => void
     deleteRoute: (routeCode: string) => Promise<void>
     showSharingDialog: (route: ApiRouteData) => void
+    onToggle: (route: ApiRouteData, disabled: boolean) => Promise<void>
 }
 
 const RoutesTable: React.FC<RoutesTableProps> = ({
@@ -27,7 +29,11 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
     showEditRouteModal,
     deleteRoute,
     showSharingDialog,
+    onToggle,
 }) => {
+    const toggleRoute = async (route, disabled) => {
+        await onToggle(route, disabled)
+    }
     return (
         <DataTable>
             <DataTableHead>
@@ -88,6 +94,12 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
                                 align="right"
                                 style={{ display: 'flex', gap: 10 }}
                             >
+                                <Switch
+                                    onChange={({ checked: enabled }) =>
+                                        toggleRoute(route, !enabled)
+                                    }
+                                    checked={!route.disabled}
+                                />
                                 <Button
                                     icon={<IconLaunch16 />}
                                     small

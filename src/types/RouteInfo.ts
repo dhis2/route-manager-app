@@ -13,6 +13,7 @@ export type ApiRouteData = {
     url: string
     name: string
     code: string
+    disabled: boolean
     auth?: RouteAuthConfig
     authorities?: string[]
 }

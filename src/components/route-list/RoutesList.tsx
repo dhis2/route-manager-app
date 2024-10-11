@@ -1,4 +1,9 @@
-import { useAlert, useDataMutation, useDataQuery } from '@dhis2/app-runtime'
+import {
+    useAlert,
+    useDataEngine,
+    useDataMutation,
+    useDataQuery,
+} from '@dhis2/app-runtime'
 import i18n from '@dhis2/d2-i18n'
 import { Button, SharingDialog } from '@dhis2/ui'
 import React, { useState } from 'react'
@@ -53,12 +58,23 @@ const RoutesList = () => {
             critical: true,
         }
     )
+    const updateFailAlert = useAlert(
+        ({ error }) =>
+            i18n.t(`Failed to update route {{message}}`, {
+                message: error?.message,
+            }),
+        {
+            critical: true,
+        }
+    )
 
     // Todo: update the type for delete mutation
     // @ts-expect-error("the error is because because delete mutation expects hardcoded ID but that's not accurate (it can take a function return a string)
     const [deleteRoute] = useDataMutation(deleteRouteMutation, {
         onError: (error) => deleteFailAlert.show({ error }),
     })
+
+    const engine = useDataEngine()
 
     const { data: allRoutesList, refetch: refetchRoutesList } =
         useDataQuery<WrapQueryResponse<ApiRouteData[], 'routes'>>(
@@ -112,6 +128,27 @@ const RoutesList = () => {
         setActiveRoute(undefined)
     }
 
+    const onToggle = async (route: ApiRouteData, disabled: boolean) => {
+        try {
+            await engine.mutate({
+                resource: 'routes',
+                id: route.id,
+                type: 'json-patch' as const,
+                data: [
+                    {
+                        op: 'replace',
+                        path: '/disabled',
+                        value: disabled,
+                    },
+                ],
+            })
+
+            refetchRoutesList()
+        } catch (error) {
+            updateFailAlert.show({ error })
+        }
+    }
+
     return (
         <div className={classes.container}>
             {isCreateModalVisible && (
@@ -148,6 +185,7 @@ const RoutesList = () => {
                 showTestRouteModal={handleShowTestModal}
                 showSharingDialog={handleShowSharingDialog}
                 deleteRoute={handleDeleteRoute}
+                onToggle={onToggle}
             />
 
             <div className={classes.tableContainerFooter}>

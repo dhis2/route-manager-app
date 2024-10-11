@@ -112,7 +112,12 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
     const handeCreateRoute = async () => {
         setLoading(true)
         try {
-            const data: ApiRouteCreationPayload = { url: urlValue, code, name }
+            const data: ApiRouteCreationPayload = {
+                url: urlValue,
+                code,
+                name,
+                disabled: false,
+            }
             if (authConfig && authConfig.type) {
                 data.auth = authConfig as RouteAuthConfig
             }
