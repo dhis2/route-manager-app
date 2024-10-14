@@ -96,10 +96,10 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
     // @ts-expect-error("we need the ID to be dynamic, which is allowed but not reflected in the type")
     const [updateRoute] = useDataMutation(updateRouteMutation, options)
 
-    const updateAuthConfig = (update: Partial<RouteAuthConfig>) => {
+    const updateAuthConfig = (update: Partial<RouteAuthConfig> = {}) => {
         setAuthConfig((data) => {
             // reset properties if changing auth type
-            if (update.type && update.type !== data.type) {
+            if (update.type && data?.type && update.type !== data.type) {
                 return update
             }
 
