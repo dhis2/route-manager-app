@@ -82,13 +82,16 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
                                 )}
                             </DataTableCell>
                             <DataTableCell>
-                                {route.authorities?.length ? (
-                                    <pre>
-                                        {JSON.stringify(route.authorities)}
-                                    </pre>
-                                ) : (
-                                    'n/a'
-                                )}
+                                <ul
+                                    style={{
+                                        padding: 0,
+                                        listStyle: 'none',
+                                    }}
+                                >
+                                    {route.authorities?.map((auth) => {
+                                        return <li key={auth}>{auth}</li>
+                                    })}
+                                </ul>
                             </DataTableCell>
                             <DataTableCell
                                 align="right"
