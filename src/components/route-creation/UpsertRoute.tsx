@@ -14,8 +14,10 @@ import classes from '../../App.module.css'
 import {
     ApiRouteCreationPayload,
     ApiRouteData,
+    Authority,
     RouteAuthConfig,
 } from '../../types/RouteInfo'
+import AuthoritiesSelect from './AuthoritiesSelect'
 import RouteAuthAdmin from './RouteAuthAdmin'
 
 const createRouteMutation = {
@@ -38,12 +40,14 @@ const updateRouteMutation = {
 }
 
 type UpsertRouteProps = {
+    authorities: Authority[]
     route: ApiRouteData
     closeModal: VoidFunction
     onSave: VoidFunction
 }
 
 const UpsertRoute: React.FC<UpsertRouteProps> = ({
+    authorities: allAuthorities = [],
     route = {},
     closeModal = () => {},
     onSave = () => {},
@@ -54,8 +58,8 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
     const [authConfig, setAuthConfig] = useState<Partial<RouteAuthConfig>>(
         route.auth
     )
-    const [authorities, setAuthorities] = useState<string>(() =>
-        route.authorities?.join(',')
+    const [selectedAuthorities, setSelectedAuthorities] = useState<string[]>(
+        () => route.authorities ?? []
     )
     const [loading, setLoading] = useState(false)
 
@@ -122,8 +126,8 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
                 data.auth = authConfig as RouteAuthConfig
             }
 
-            if (authorities) {
-                data.authorities = authorities?.split(/[\s,]/)
+            if (selectedAuthorities) {
+                data.authorities = selectedAuthorities
             }
 
             if (route?.id) {
@@ -141,7 +145,6 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
                 onSave()
             }
         } catch (err) {
-            console.log('>>>eee', err)
             show({ type: 'error', message: err.message })
         } finally {
             setLoading(false)
@@ -194,16 +197,10 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
                         authConfig={authConfig}
                         updateAuthConfig={updateAuthConfig}
                     />
-                    <InputField
-                        value={authorities}
-                        onChange={({ value }) => setAuthorities(value)}
-                        placeholder={i18n.t(
-                            'comma separated list of authorities i.e. MY_AUTHORITY_1,MY_AUTHORITY_2'
-                        )}
-                        label={i18n.t('Authorities')}
-                        helpText={i18n.t(
-                            'Restrict access to cerain authorities'
-                        )}
+                    <AuthoritiesSelect
+                        authorities={allAuthorities}
+                        route={route}
+                        onSelect={setSelectedAuthorities}
                     />
                 </div>
             </ModalContent>

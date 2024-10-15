@@ -22,8 +22,17 @@ export type ApiRouteCreationPayload = Omit<ApiRouteData, 'id'> & {
     id?: string
 }
 
-export type WrapQueryResponse<T, S extends string = 'result'> = {
+export type Authority = {
+    id: string
+    name: string
+}
+
+export type WrapQueryResponse<
+    T,
+    S extends string = 'result',
+    R extends string = S
+> = {
     [K in S]: {
-        [K in S]: T
+        [K in R]: T
     }
 }
