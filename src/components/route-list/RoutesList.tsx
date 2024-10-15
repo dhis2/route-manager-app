@@ -27,6 +27,18 @@ const listRoutesQuery = {
             pageSize: 50,
         },
     },
+    authorities: {
+        resource: 'authorities',
+        params: {
+            fields: '*',
+            pageSize: -1,
+        },
+    },
+}
+
+type Authority = {
+    id: string
+    name: string
 }
 
 const RoutesList = () => {
@@ -58,6 +70,7 @@ const RoutesList = () => {
             critical: true,
         }
     )
+
     const updateFailAlert = useAlert(
         ({ error }) =>
             i18n.t(`Failed to update route {{message}}`, {
@@ -76,10 +89,13 @@ const RoutesList = () => {
 
     const engine = useDataEngine()
 
-    const { data: allRoutesList, refetch: refetchRoutesList } =
-        useDataQuery<WrapQueryResponse<ApiRouteData[], 'routes'>>(
-            listRoutesQuery
-        )
+    const { data, refetch: refetchRoutesList } = useDataQuery<
+        WrapQueryResponse<ApiRouteData[], 'routes'> &
+            WrapQueryResponse<Authority[], 'authorities', 'systemAuthorities'>
+    >(listRoutesQuery)
+
+    const routes = data?.routes?.routes
+    const authorities = data?.authorities.systemAuthorities
 
     const handleDeleteRoute = async (routeCode: string) => {
         confirmDeleteAlert.show({ id: routeCode })
@@ -156,6 +172,7 @@ const RoutesList = () => {
                     route={activeRoute}
                     closeModal={onCloseCreateRouteModal}
                     onSave={onSave}
+                    authorities={authorities}
                 />
             )}
 
@@ -180,7 +197,7 @@ const RoutesList = () => {
             </div>
 
             <RoutesTable
-                routes={allRoutesList?.routes?.routes}
+                routes={routes}
                 showEditRouteModal={handleEditRoute}
                 showTestRouteModal={handleShowTestModal}
                 showSharingDialog={handleShowSharingDialog}
