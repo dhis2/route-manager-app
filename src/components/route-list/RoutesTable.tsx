@@ -7,9 +7,12 @@ import {
     DataTableCell,
     DataTableHead,
     DataTableColumnHeader,
+    IconLaunch16,
+    Switch,
 } from '@dhis2/ui'
 import React from 'react'
 import { ApiRouteData } from '../../types/RouteInfo'
+import RouteActions from './RouteActions'
 
 type RoutesTableProps = {
     routes: ApiRouteData[]
@@ -17,6 +20,7 @@ type RoutesTableProps = {
     showEditRouteModal: (route: ApiRouteData) => void
     deleteRoute: (routeCode: string) => Promise<void>
     showSharingDialog: (route: ApiRouteData) => void
+    onToggle: (route: ApiRouteData, disabled: boolean) => Promise<void>
 }
 
 const RoutesTable: React.FC<RoutesTableProps> = ({
@@ -25,7 +29,11 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
     showEditRouteModal,
     deleteRoute,
     showSharingDialog,
+    onToggle,
 }) => {
+    const toggleRoute = async (route, disabled) => {
+        await onToggle(route, disabled)
+    }
     return (
         <DataTable>
             <DataTableHead>
@@ -74,40 +82,43 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
                                 )}
                             </DataTableCell>
                             <DataTableCell>
-                                {route.authorities?.length ? (
-                                    <pre>
-                                        {JSON.stringify(route.authorities)}
-                                    </pre>
-                                ) : (
-                                    'n/a'
-                                )}
-                            </DataTableCell>
-                            <DataTableCell align="right">
-                                <Button
-                                    small
-                                    onClick={() => showSharingDialog(route)}
+                                <ul
+                                    style={{
+                                        padding: 0,
+                                        listStyle: 'none',
+                                    }}
                                 >
-                                    {i18n.t('Sharing')}
-                                </Button>{' '}
+                                    {route.authorities?.map((auth) => {
+                                        return <li key={auth}>{auth}</li>
+                                    })}
+                                </ul>
+                            </DataTableCell>
+                            <DataTableCell
+                                align="right"
+                                style={{ display: 'flex', gap: 10 }}
+                            >
+                                <Switch
+                                    onChange={({ checked: enabled }) =>
+                                        toggleRoute(route, !enabled)
+                                    }
+                                    checked={!route.disabled}
+                                />
                                 <Button
+                                    icon={<IconLaunch16 />}
                                     small
                                     onClick={() => showTestRouteModal(route)}
                                 >
-                                    {i18n.t('Test')}
+                                    {i18n.t('Test route')}
                                 </Button>{' '}
-                                <Button
-                                    small
-                                    onClick={() => showEditRouteModal(route)}
-                                >
-                                    {i18n.t('Edit Route')}
-                                </Button>{' '}
-                                <Button
-                                    destructive
-                                    small
-                                    onClick={() => deleteRoute(route.id)}
-                                >
-                                    {i18n.t('Delete')}
-                                </Button>
+                                <RouteActions
+                                    showSharingDialog={() =>
+                                        showSharingDialog(route)
+                                    }
+                                    showEditRouteModal={() =>
+                                        showEditRouteModal(route)
+                                    }
+                                    deleteRoute={() => deleteRoute(route.id)}
+                                />
                             </DataTableCell>
                         </DataTableRow>
                     )

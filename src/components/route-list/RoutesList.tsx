@@ -1,4 +1,9 @@
-import { useDataMutation, useDataQuery } from '@dhis2/app-runtime'
+import {
+    useAlert,
+    useDataEngine,
+    useDataMutation,
+    useDataQuery,
+} from '@dhis2/app-runtime'
 import i18n from '@dhis2/d2-i18n'
 import { Button, SharingDialog } from '@dhis2/ui'
 import React, { useState } from 'react'
@@ -22,22 +27,82 @@ const listRoutesQuery = {
             pageSize: 50,
         },
     },
+    authorities: {
+        resource: 'authorities',
+        params: {
+            fields: '*',
+            pageSize: -1,
+        },
+    },
+}
+
+type Authority = {
+    id: string
+    name: string
 }
 
 const RoutesList = () => {
     const [sharingDialogId, setSharingDialogId] = useState<string>()
 
+    const confirmDeleteAlert = useAlert(
+        i18n.t('Are you sure you want to delete this route?'),
+        (options) => ({
+            warning: true,
+            actions: [
+                {
+                    label: i18n.t('Confirm'),
+                    onClick: () => performDeleteRoute(options.id),
+                },
+                {
+                    label: i18n.t('Cancel'),
+                    onClick: () => confirmDeleteAlert.hide(),
+                },
+            ],
+        })
+    )
+
+    const deleteFailAlert = useAlert(
+        ({ error }) =>
+            i18n.t(`Failed to delete route {{message}}`, {
+                message: error?.message,
+            }),
+        {
+            critical: true,
+        }
+    )
+
+    const updateFailAlert = useAlert(
+        ({ error }) =>
+            i18n.t(`Failed to update route {{message}}`, {
+                message: error?.message,
+            }),
+        {
+            critical: true,
+        }
+    )
+
     // Todo: update the type for delete mutation
     // @ts-expect-error("the error is because because delete mutation expects hardcoded ID but that's not accurate (it can take a function return a string)
-    const [deleteRoute] = useDataMutation(deleteRouteMutation)
+    const [deleteRoute] = useDataMutation(deleteRouteMutation, {
+        onError: (error) => deleteFailAlert.show({ error }),
+    })
 
-    const { data: allRoutesList, refetch: refetchRoutesList } =
-        useDataQuery<WrapQueryResponse<ApiRouteData[], 'routes'>>(
-            listRoutesQuery
-        )
+    const engine = useDataEngine()
+
+    const { data, refetch: refetchRoutesList } = useDataQuery<
+        WrapQueryResponse<ApiRouteData[], 'routes'> &
+            WrapQueryResponse<Authority[], 'authorities', 'systemAuthorities'>
+    >(listRoutesQuery)
+
+    const routes = data?.routes?.routes
+    const authorities = data?.authorities.systemAuthorities
 
     const handleDeleteRoute = async (routeCode: string) => {
-        await deleteRoute({ id: routeCode })
+        confirmDeleteAlert.show({ id: routeCode })
+    }
+
+    const performDeleteRoute = async (id: string) => {
+        await deleteRoute({ id })
         refetchRoutesList()
     }
 
@@ -79,6 +144,27 @@ const RoutesList = () => {
         setActiveRoute(undefined)
     }
 
+    const onToggle = async (route: ApiRouteData, disabled: boolean) => {
+        try {
+            await engine.mutate({
+                resource: 'routes',
+                id: route.id,
+                type: 'json-patch' as const,
+                data: [
+                    {
+                        op: 'replace',
+                        path: '/disabled',
+                        value: disabled,
+                    },
+                ],
+            })
+
+            refetchRoutesList()
+        } catch (error) {
+            updateFailAlert.show({ error })
+        }
+    }
+
     return (
         <div className={classes.container}>
             {isCreateModalVisible && (
@@ -86,6 +172,7 @@ const RoutesList = () => {
                     route={activeRoute}
                     closeModal={onCloseCreateRouteModal}
                     onSave={onSave}
+                    authorities={authorities}
                 />
             )}
 
@@ -110,11 +197,12 @@ const RoutesList = () => {
             </div>
 
             <RoutesTable
-                routes={allRoutesList?.routes?.routes}
+                routes={routes}
                 showEditRouteModal={handleEditRoute}
                 showTestRouteModal={handleShowTestModal}
                 showSharingDialog={handleShowSharingDialog}
                 deleteRoute={handleDeleteRoute}
+                onToggle={onToggle}
             />
 
             <div className={classes.tableContainerFooter}>

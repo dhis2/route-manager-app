@@ -14,8 +14,10 @@ import classes from '../../App.module.css'
 import {
     ApiRouteCreationPayload,
     ApiRouteData,
+    Authority,
     RouteAuthConfig,
 } from '../../types/RouteInfo'
+import AuthoritiesSelect from './AuthoritiesSelect'
 import RouteAuthAdmin from './RouteAuthAdmin'
 
 const createRouteMutation = {
@@ -38,12 +40,14 @@ const updateRouteMutation = {
 }
 
 type UpsertRouteProps = {
+    authorities: Authority[]
     route: ApiRouteData
     closeModal: VoidFunction
     onSave: VoidFunction
 }
 
 const UpsertRoute: React.FC<UpsertRouteProps> = ({
+    authorities: allAuthorities = [],
     route = {},
     closeModal = () => {},
     onSave = () => {},
@@ -54,8 +58,8 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
     const [authConfig, setAuthConfig] = useState<Partial<RouteAuthConfig>>(
         route.auth
     )
-    const [authorities, setAuthorities] = useState<string>(() =>
-        route.authorities?.join(',')
+    const [selectedAuthorities, setSelectedAuthorities] = useState<string[]>(
+        () => route.authorities ?? []
     )
     const [loading, setLoading] = useState(false)
 
@@ -82,19 +86,24 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
     )
 
     const options = {
-        onComplete: () => show({ type: 'success' }),
-        onError: (error) => show({ type: 'error', error: error.message }),
+        onComplete: () => {
+            show({ type: 'success' })
+            setLoading(false)
+        },
+        onError: (error) => {
+            show({ type: 'error', error: error.message })
+            setLoading(false)
+        },
     }
     const [createRoute] = useDataMutation(createRouteMutation, options)
 
     // @ts-expect-error("we need the ID to be dynamic, which is allowed but not reflected in the type")
     const [updateRoute] = useDataMutation(updateRouteMutation, options)
-    console.log(authConfig)
 
-    const updateAuthConfig = (update: Partial<RouteAuthConfig>) => {
+    const updateAuthConfig = (update: Partial<RouteAuthConfig> = {}) => {
         setAuthConfig((data) => {
             // reset properties if changing auth type
-            if (update.type && update.type !== data.type) {
+            if (update.type && data?.type && update.type !== data.type) {
                 return update
             }
 
@@ -107,13 +116,18 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
     const handeCreateRoute = async () => {
         setLoading(true)
         try {
-            const data: ApiRouteCreationPayload = { url: urlValue, code, name }
+            const data: ApiRouteCreationPayload = {
+                url: urlValue,
+                code,
+                name,
+                disabled: false,
+            }
             if (authConfig && authConfig.type) {
-                data.auth = authConfig
+                data.auth = authConfig as RouteAuthConfig
             }
 
-            if (authorities) {
-                data.authorities = authorities?.split(/[\s,]/)
+            if (selectedAuthorities) {
+                data.authorities = selectedAuthorities
             }
 
             if (route?.id) {
@@ -131,7 +145,6 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
                 onSave()
             }
         } catch (err) {
-            console.log('>>>eee', err)
             show({ type: 'error', message: err.message })
         } finally {
             setLoading(false)
@@ -139,13 +152,10 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
     }
 
     return (
-        <Modal>
+        <Modal onClose={closeModal}>
             <ModalTitle>{i18n.t('Route details')}</ModalTitle>
             <ModalActions>
                 <ButtonStrip end>
-                    <Button secondary onClick={closeModal}>
-                        {i18n.t('Close')}
-                    </Button>
                     <Button
                         loading={loading}
                         disabled={loading}
@@ -187,16 +197,10 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
                         authConfig={authConfig}
                         updateAuthConfig={updateAuthConfig}
                     />
-                    <InputField
-                        value={authorities}
-                        onChange={({ value }) => setAuthorities(value)}
-                        placeholder={i18n.t(
-                            'comma separated list of authorities i.e. MY_AUTHORITY_1,MY_AUTHORITY_2'
-                        )}
-                        label={i18n.t('Authorities')}
-                        helpText={i18n.t(
-                            'Restrict access to cerain authorities'
-                        )}
+                    <AuthoritiesSelect
+                        authorities={allAuthorities}
+                        route={route}
+                        onSelect={setSelectedAuthorities}
                     />
                 </div>
             </ModalContent>
