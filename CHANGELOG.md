@@ -1,3 +1,17 @@
+# [100.2.0](https://github.com/dhis2/route-manager-app/compare/v100.1.0...v100.2.0) (2024-10-21)
+
+
+### Bug Fixes
+
+* add delete confirmation alert ([6814f49](https://github.com/dhis2/route-manager-app/commit/6814f49a06b8133e2f254f6d3894add56c5d97f1))
+* bug with auth config when creating rather than editing route ([04a63f0](https://github.com/dhis2/route-manager-app/commit/04a63f07bcfe938fc8db4064b8658920b5948f0b))
+* show authorities in a MultiSelect rather than an input text field ([097dad9](https://github.com/dhis2/route-manager-app/commit/097dad96d8759cf86809dcfe3072f72e00fb9367))
+
+
+### Features
+
+* enable/disable routes ([41cdc0f](https://github.com/dhis2/route-manager-app/commit/41cdc0ff47b119331b1681e804c7da9fc547ddfb))
+
 # [100.1.0](https://github.com/dhis2/route-manager-app/compare/v100.0.2...v100.1.0) (2024-10-09)
 
 
