@@ -40,6 +40,7 @@ const TestRoute: React.FC<TestRouteProps> = ({
     const [verb, setVerb] = useState<Verb>('GET')
     const [body, setBody] = useState<string>()
     const [wildcard, setWildcard] = useState<string>()
+    const [queryParams, setQueryParams] = useState<string>()
     const [result, setResult] = useState<unknown>('')
     const [loading, setLoading] = useState<boolean>(false)
 
@@ -68,8 +69,14 @@ const TestRoute: React.FC<TestRouteProps> = ({
             setResult(undefined)
             setLoading(true)
 
+            const queryPrefix = queryParams?.startsWith('?') ? '' : '?'
+
             const resource = `routes/${route.id ?? route.code}/run${
-                wildcard ? `/${wildcard}` : ''
+                wildcard
+                    ? `/${wildcard}`
+                    : queryParams
+                    ? `${queryPrefix}${queryParams}`
+                    : ''
             }`
 
             if (verb === 'GET') {
@@ -181,6 +188,15 @@ const TestRoute: React.FC<TestRouteProps> = ({
                             value={wildcard}
                             onChange={({ value }) => setWildcard(value)}
                             label={i18n.t('Wildcard path')}
+                        />
+                    )}
+
+                    {verb === 'GET' && !hasWildCardPath && (
+                        <InputField
+                            value={queryParams}
+                            placeholder={'query1=value&query2=value2...'}
+                            onChange={({ value }) => setQueryParams(value)}
+                            label={i18n.t('Query Params')}
                         />
                     )}
 
