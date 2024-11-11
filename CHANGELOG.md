@@ -1,3 +1,10 @@
+# [100.3.0](https://github.com/dhis2/route-manager-app/compare/v100.2.0...v100.3.0) (2024-11-11)
+
+
+### Features
+
+* add query params field for GET request routes ([49afe00](https://github.com/dhis2/route-manager-app/commit/49afe00896690754beb9723c7b3532a11aa076c8))
+
 # [100.2.0](https://github.com/dhis2/route-manager-app/compare/v100.1.0...v100.2.0) (2024-10-21)
 
 
