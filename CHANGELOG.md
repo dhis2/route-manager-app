@@ -1,3 +1,10 @@
+## [100.3.1](https://github.com/dhis2/route-manager-app/compare/v100.3.0...v100.3.1) (2025-01-16)
+
+
+### Bug Fixes
+
+* add app icon ([#18](https://github.com/dhis2/route-manager-app/issues/18)) ([7324a60](https://github.com/dhis2/route-manager-app/commit/7324a6044715bce629ece1ce0edc07c8c8b8cb7a))
+
 # [100.3.0](https://github.com/dhis2/route-manager-app/compare/v100.2.0...v100.3.0) (2024-11-11)
 
 
