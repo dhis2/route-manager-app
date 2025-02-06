@@ -1,3 +1,5 @@
+![React 18](https://img.shields.io/badge/react-18-blue)
+
 # Route Manager App
 
 This app supports managing routes using [DHIS2 Routes API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/route.html).
