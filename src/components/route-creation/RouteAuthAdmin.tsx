@@ -9,7 +9,7 @@ type RouteAuthAdminProps = {
 }
 
 const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
-    authConfig = {},
+    authConfig = {} as Partial<RouteAuthConfig>,
     updateAuthConfig,
 }) => {
     const { type } = authConfig
