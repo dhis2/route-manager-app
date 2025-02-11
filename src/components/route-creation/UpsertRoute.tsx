@@ -48,7 +48,7 @@ type UpsertRouteProps = {
 
 const UpsertRoute: React.FC<UpsertRouteProps> = ({
     authorities: allAuthorities = [],
-    route = {},
+    route = {} as Partial<ApiRouteData>,
     closeModal = () => {},
     onSave = () => {},
 }) => {

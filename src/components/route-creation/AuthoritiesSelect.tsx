@@ -4,8 +4,7 @@ import * as React from 'react'
 import { ApiRouteData, Authority } from '../../types/RouteInfo'
 
 type AuthoritiesSelectProps = {
-    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-    route: ApiRouteData | {}
+    route: Partial<ApiRouteData>
     authorities: Authority[]
     onSelect: React.Dispatch<React.SetStateAction<string[]>>
 }
@@ -17,7 +16,7 @@ const AuthoritiesSelect: React.FC<AuthoritiesSelectProps> = ({
 }) => {
     const [selectedAuthorities, setSelectedAuthorities] = React.useState<
         string[]
-    >(() => route.authorities ?? [])
+    >(() => route?.authorities ?? [])
 
     const onChange = ({ selected }) => {
         setSelectedAuthorities(selected)

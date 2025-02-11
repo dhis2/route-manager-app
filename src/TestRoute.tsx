@@ -34,7 +34,7 @@ const typesMap: Record<string, MutationType> = {
 }
 
 const TestRoute: React.FC<TestRouteProps> = ({
-    route = {},
+    route = {} as Partial<ApiRouteData>,
     closeModal = () => {},
 }) => {
     const [verb, setVerb] = useState<Verb>('GET')

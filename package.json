@@ -16,18 +16,16 @@
         "format:staged": "d2-style apply --staged"
     },
     "devDependencies": {
-        "@dhis2/cli-app-scripts": "^12.0.0-alpha.17",
-        "@dhis2/cli-style": "^10.7.4",
+        "@dhis2/cli-app-scripts": "^12.3.0",
+        "@dhis2/cli-style": "^10.7.6",
+        "@testing-library/dom": "^10.4.0",
+        "@testing-library/react": "^16.2.0",
         "@types/jest": "^29.5.13",
-        "@typescript-eslint/eslint-plugin": "^8.7.0",
-        "@typescript-eslint/parser": "^8.7.0",
-        "eslint": "^8",
-        "typescript": "^5.6.2"
+        "@types/react": "^19.0.8",
+        "@types/react-dom": "^19.0.3"
     },
     "dependencies": {
-        "@dhis2/app-runtime": "^3.11.0"
-    },
-    "resolutions": {
-        "eslint": "^8"
+        "@dhis2/app-runtime": "^3.13.2",
+        "@dhis2/ui": "^10.1.11"
     }
 }
