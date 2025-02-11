@@ -1,3 +1,10 @@
+## [100.3.2](https://github.com/dhis2/route-manager-app/compare/v100.3.1...v100.3.2) (2025-02-11)
+
+
+### Bug Fixes
+
+* **app-platform:** upgrade platform tools to use vite and react 18 ([#20](https://github.com/dhis2/route-manager-app/issues/20)) ([0ca4a14](https://github.com/dhis2/route-manager-app/commit/0ca4a144cecbefaa3da3154abd334544c8c0ced3))
+
 ## [100.3.1](https://github.com/dhis2/route-manager-app/compare/v100.3.0...v100.3.1) (2025-01-16)
 
 
