@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-02-11T16:00:40.018Z\n"
-"PO-Revision-Date: 2025-02-11T16:00:40.018Z\n"
+"POT-Creation-Date: 2025-02-12T11:36:54.270Z\n"
+"PO-Revision-Date: 2025-02-12T11:36:54.270Z\n"
 
 msgid "Failed to invoke route: {{error}}"
 msgstr "Failed to invoke route: {{error}}"
@@ -80,11 +80,14 @@ msgstr "Route details"
 msgid "Save Route"
 msgstr "Save Route"
 
+msgid "Cancel"
+msgstr "Cancel"
+
 msgid "A unique code for the route"
 msgstr "A unique code for the route"
 
-msgid "A unique name for the route"
-msgstr "A unique name for the route"
+msgid "A unique user-friendly name for the route"
+msgstr "A unique user-friendly name for the route"
 
 msgid "e.g. https://postman-echo.com/get"
 msgstr "e.g. https://postman-echo.com/get"
@@ -106,9 +109,6 @@ msgstr "Are you sure you want to delete this route?"
 
 msgid "Confirm"
 msgstr "Confirm"
-
-msgid "Cancel"
-msgstr "Cancel"
 
 msgid "Failed to delete route {{message}}"
 msgstr "Failed to delete route {{message}}"
@@ -136,6 +136,9 @@ msgstr "Authentication"
 
 msgid "No routes configured yet."
 msgstr "No routes configured yet."
+
+msgid "Enable route"
+msgstr "Enable route"
 
 msgid "Test route"
 msgstr "Test route"

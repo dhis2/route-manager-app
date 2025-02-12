@@ -94,34 +94,37 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
                                     })}
                                 </ul>
                             </DataTableCell>
-                            <DataTableCell
-                                align="right"
-                                className={styles.routeActionsCell}
-                            >
-                                <Switch
-                                    onChange={({ checked: enabled }) =>
-                                        toggleRoute(route, !enabled)
-                                    }
-                                    checked={!route.disabled}
-                                    label={i18n.t('Enable route')}
-                                />
-                                <Button
-                                    icon={<IconLaunch16 />}
-                                    disabled={route.disabled}
-                                    small
-                                    onClick={() => showTestRouteModal(route)}
-                                >
-                                    {i18n.t('Test route')}
-                                </Button>{' '}
-                                <RouteActions
-                                    showSharingDialog={() =>
-                                        showSharingDialog(route)
-                                    }
-                                    showEditRouteModal={() =>
-                                        showEditRouteModal(route)
-                                    }
-                                    deleteRoute={() => deleteRoute(route.id)}
-                                />
+                            <DataTableCell align="right">
+                                <div className={styles.routeActionsCell}>
+                                    <Switch
+                                        onChange={({ checked: enabled }) =>
+                                            toggleRoute(route, !enabled)
+                                        }
+                                        checked={!route.disabled}
+                                        label={i18n.t('Enable route')}
+                                    />
+                                    <Button
+                                        icon={<IconLaunch16 />}
+                                        disabled={route.disabled}
+                                        small
+                                        onClick={() =>
+                                            showTestRouteModal(route)
+                                        }
+                                    >
+                                        {i18n.t('Test route')}
+                                    </Button>{' '}
+                                    <RouteActions
+                                        showSharingDialog={() =>
+                                            showSharingDialog(route)
+                                        }
+                                        showEditRouteModal={() =>
+                                            showEditRouteModal(route)
+                                        }
+                                        deleteRoute={() =>
+                                            deleteRoute(route.id)
+                                        }
+                                    />
+                                </div>
                             </DataTableCell>
                         </DataTableRow>
                     )
