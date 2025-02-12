@@ -13,6 +13,7 @@ import {
 import React from 'react'
 import { ApiRouteData } from '../../types/RouteInfo'
 import RouteActions from './RouteActions'
+import styles from './RoutesTable.module.css'
 
 type RoutesTableProps = {
     routes: ApiRouteData[]
@@ -95,7 +96,7 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
                             </DataTableCell>
                             <DataTableCell
                                 align="right"
-                                style={{ display: 'flex', gap: 10 }}
+                                className={styles.routeActionsCell}
                             >
                                 <Switch
                                     onChange={({ checked: enabled }) =>
