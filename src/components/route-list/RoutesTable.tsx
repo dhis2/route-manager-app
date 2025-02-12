@@ -9,6 +9,7 @@ import {
     DataTableColumnHeader,
     IconLaunch16,
     Switch,
+    NoticeBox,
 } from '@dhis2/ui'
 import React from 'react'
 import { ApiRouteData } from '../../types/RouteInfo'
@@ -16,6 +17,7 @@ import RouteActions from './RouteActions'
 
 type RoutesTableProps = {
     routes: ApiRouteData[]
+    showPermissionError: boolean
     showTestRouteModal: (route: ApiRouteData) => void
     showEditRouteModal: (route: ApiRouteData) => void
     deleteRoute: (routeCode: string) => Promise<void>
@@ -25,6 +27,7 @@ type RoutesTableProps = {
 
 const RoutesTable: React.FC<RoutesTableProps> = ({
     routes,
+    showPermissionError,
     showTestRouteModal,
     showEditRouteModal,
     deleteRoute,
@@ -59,7 +62,20 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
                     <DataTableColumnHeader></DataTableColumnHeader>
                 </DataTableRow>
             </DataTableHead>
-            {routes?.length === 0 && (
+
+            {showPermissionError && (
+                <DataTableRow>
+                    <DataTableCell colSpan="100%">
+                        <NoticeBox warning>
+                            The current user does not have the necessary
+                            permissions to configure routes. Please ensure that
+                            the &ldquo;Route&ldquo; authority is assigned to the
+                            user&apos;s role to enable route management.
+                        </NoticeBox>
+                    </DataTableCell>
+                </DataTableRow>
+            )}
+            {!showPermissionError && routes?.length === 0 && (
                 <DataTableRow>
                     <DataTableCell colSpan="100%">
                         {i18n.t('No routes configured yet.')}
