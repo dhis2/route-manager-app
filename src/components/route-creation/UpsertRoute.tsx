@@ -164,6 +164,9 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
                     >
                         {i18n.t('Save Route')}
                     </Button>
+                    <Button secondary onClick={closeModal}>
+                        {i18n.t('Cancel')}
+                    </Button>
                 </ButtonStrip>
             </ModalActions>
             <ModalContent>
