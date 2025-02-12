@@ -106,6 +106,7 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
                                 />
                                 <Button
                                     icon={<IconLaunch16 />}
+                                    disabled={route.disabled}
                                     small
                                     onClick={() => showTestRouteModal(route)}
                                 >
