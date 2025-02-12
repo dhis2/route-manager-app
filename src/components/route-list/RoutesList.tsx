@@ -6,7 +6,7 @@ import {
 } from '@dhis2/app-runtime'
 import i18n from '@dhis2/d2-i18n'
 import { Button, SharingDialog } from '@dhis2/ui'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from '../../App.module.css'
 import { UpsertRoute } from '../../components/route-creation'
 import TestRoute from '../../TestRoute'
@@ -34,6 +34,12 @@ const listRoutesQuery = {
             pageSize: -1,
         },
     },
+    currentUser: {
+        resource: 'me',
+        params: {
+            fields: 'authorities',
+        },
+    },
 }
 
 type Authority = {
@@ -43,6 +49,7 @@ type Authority = {
 
 const RoutesList = () => {
     const [sharingDialogId, setSharingDialogId] = useState<string>()
+    const [userHasPermissions, setUserHasPermissions] = useState(true)
 
     const confirmDeleteAlert = useAlert(
         i18n.t('Are you sure you want to delete this route?'),
@@ -91,11 +98,23 @@ const RoutesList = () => {
 
     const { data, refetch: refetchRoutesList } = useDataQuery<
         WrapQueryResponse<ApiRouteData[], 'routes'> &
-            WrapQueryResponse<Authority[], 'authorities', 'systemAuthorities'>
+            WrapQueryResponse<Authority[], 'authorities', 'systemAuthorities'> &
+            WrapQueryResponse<string[], 'currentUser', 'authorities'>
     >(listRoutesQuery)
 
     const routes = data?.routes?.routes
     const authorities = data?.authorities.systemAuthorities
+
+    const userAuthorities = data?.currentUser?.authorities
+
+    useEffect(() => {
+        if (
+            userAuthorities &&
+            !userAuthorities.includes('F_ROUTE_PUBLIC_ADD')
+        ) {
+            setUserHasPermissions(false)
+        }
+    }, [userAuthorities])
 
     const handleDeleteRoute = async (routeCode: string) => {
         confirmDeleteAlert.show({ id: routeCode })
@@ -203,6 +222,7 @@ const RoutesList = () => {
                 showSharingDialog={handleShowSharingDialog}
                 deleteRoute={handleDeleteRoute}
                 onToggle={onToggle}
+                showPermissionError={!userHasPermissions}
             />
 
             <div className={classes.tableContainerFooter}>
