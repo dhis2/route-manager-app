@@ -172,19 +172,29 @@ const UpsertRoute: React.FC<UpsertRouteProps> = ({
             <ModalContent>
                 <div className={classes.formContainer}>
                     <InputField
+                        required
                         value={code}
                         onChange={({ value }) => setCode(value)}
+                        onBlur={({ value }) => {
+                            if (!name) {
+                                setName(value)
+                            }
+                        }}
                         placeholder={i18n.t('A unique code for the route')}
                         label={i18n.t('Route code')}
                     />
                     <InputField
+                        required
                         value={name}
                         onChange={({ value }) => setName(value)}
-                        placeholder={i18n.t('A unique name for the route')}
+                        placeholder={i18n.t(
+                            'A unique user-friendly name for the route'
+                        )}
                         label={i18n.t('Route Name')}
                     />
 
                     <InputField
+                        required
                         value={urlValue}
                         onChange={({ value }) => setValue(value)}
                         placeholder={i18n.t(

@@ -51,6 +51,7 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
                         label={i18n.t('Username')}
                     />
                     <InputField
+                        type="password"
                         value={authConfig.password}
                         onChange={({ value: password }) =>
                             updateAuthConfig({ password })
@@ -62,6 +63,7 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
             {type === 'api-token' && (
                 <>
                     <InputField
+                        type="password"
                         value={authConfig.token}
                         onChange={({ value: token }) =>
                             updateAuthConfig({ token })
