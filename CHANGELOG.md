@@ -1,3 +1,15 @@
+## [100.3.3](https://github.com/dhis2/route-manager-app/compare/v100.3.2...v100.3.3) (2025-02-12)
+
+
+### Bug Fixes
+
+* **BETA-211:** add label to Enable route switch ([0b647b0](https://github.com/dhis2/route-manager-app/commit/0b647b0ce3ec319d2cfc54e20297d3766d8bf386))
+* **BETA-215:** add Cancel button to Edit route modal ([3b174f1](https://github.com/dhis2/route-manager-app/commit/3b174f1972211e6470e87e928c9c032423712e70))
+* **BETA-217:** disable Test button when route is disabled ([8cb2a24](https://github.com/dhis2/route-manager-app/commit/8cb2a2479d7fc9809779e45ff31c548ce81a8445))
+* **BETA-218:** fix hover style for last cell in routes table ([9e48913](https://github.com/dhis2/route-manager-app/commit/9e48913cd7fd93847a9cdb9eb22833c61de21500))
+* **BETA-220:** make sure buttons do not break on smaller screens ([9cd4cd2](https://github.com/dhis2/route-manager-app/commit/9cd4cd2bba668b41c1847d1d4c99469082ba4b6f))
+* **BETA-244:** mask credential fields ([2c6e6b7](https://github.com/dhis2/route-manager-app/commit/2c6e6b78a275cdac79214d7bb4edb3ed3f7c18f9))
+
 ## [100.3.2](https://github.com/dhis2/route-manager-app/compare/v100.3.1...v100.3.2) (2025-02-11)
 
 
