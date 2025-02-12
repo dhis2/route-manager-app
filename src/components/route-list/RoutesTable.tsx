@@ -102,6 +102,7 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
                                         toggleRoute(route, !enabled)
                                     }
                                     checked={!route.disabled}
+                                    label={i18n.t('Enable route')}
                                 />
                                 <Button
                                     icon={<IconLaunch16 />}
