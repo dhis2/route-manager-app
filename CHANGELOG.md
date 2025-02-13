@@ -1,3 +1,10 @@
+## [100.3.4](https://github.com/dhis2/route-manager-app/compare/v100.3.3...v100.3.4) (2025-02-13)
+
+
+### Bug Fixes
+
+* display warning when the user does not have permissions ([54b6f24](https://github.com/dhis2/route-manager-app/commit/54b6f24d5e6886524381edf1f681215d3c8a4ec0))
+
 ## [100.3.3](https://github.com/dhis2/route-manager-app/compare/v100.3.2...v100.3.3) (2025-02-12)
 
 
