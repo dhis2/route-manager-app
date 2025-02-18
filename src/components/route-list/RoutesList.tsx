@@ -111,7 +111,8 @@ const RoutesList = () => {
     useEffect(() => {
         if (
             userAuthorities &&
-            !userAuthorities.includes('F_ROUTE_PUBLIC_ADD')
+            !userAuthorities.includes('F_ROUTE_PUBLIC_ADD') &&
+            !userAuthorities.includes('ALL')
         ) {
             setUserHasPermissions(false)
         }
