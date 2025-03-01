@@ -8,8 +8,13 @@
         "target": "ESNext",
         "module": "esnext",
         "moduleResolution": "node",
-        "types": ["jest"],
-        "typeRoots": ["./types", "./node_modules/@types"]
+
+        "types": ["jest", "jest-dom"],
+        "typeRoots": [
+            "./types",
+            "./node_modules/@types",
+            "./node_modules/@testing-library"
+        ]
     },
     "include": ["./src/**/*"]
 }

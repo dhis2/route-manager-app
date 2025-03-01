@@ -1,4 +1,4 @@
-![React 18](https://img.shields.io/badge/react-18-blue)
+![React 18](https://img.shields.io/badge/react-18-blue) [![codecov](https://codecov.io/gh/dhis2/route-manager-app/graph/badge.svg?token=HLFHRQVZL7)](https://codecov.io/gh/dhis2/route-manager-app)
 
 # Route Manager App
 

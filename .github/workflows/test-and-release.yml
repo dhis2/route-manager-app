@@ -13,7 +13,20 @@ jobs:
     lint:
         uses: dhis2/workflows-platform/.github/workflows/lint.yml@v1
     test:
-        uses: dhis2/workflows-platform/.github/workflows/test.yml@v1
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 20
+                  cache: 'yarn'
+            - run: yarn install --frozen-lockfile
+            - run: yarn build
+            - run: yarn test --coverage
+            - name: Upload coverage reports to Codecov
+              uses: codecov/codecov-action@v4.0.1
+              with:
+                  token: ${{ secrets.CODECOV_TOKEN }}
     # e2e:
     #     uses: dhis2/workflows-platform/.github/workflows/legacy-e2e.yml@v1
     #     # Skips forks and dependabot PRs
