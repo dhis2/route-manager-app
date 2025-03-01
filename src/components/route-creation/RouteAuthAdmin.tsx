@@ -1,5 +1,10 @@
 import i18n from '@dhis2/d2-i18n'
-import { SingleSelectField, SingleSelectOption, InputField } from '@dhis2/ui'
+import {
+    SingleSelectField,
+    SingleSelectOption,
+    InputField,
+    Divider,
+} from '@dhis2/ui'
 import React from 'react'
 import { AuthScheme, RouteAuthConfig } from '../../types/RouteInfo'
 
@@ -17,6 +22,8 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
     return (
         <>
             <SingleSelectField
+                dataTest="select-authentication"
+                className="form-field"
                 filterable={false}
                 selected={type ?? 'n/a'}
                 onChange={({ selected }) => {
@@ -27,6 +34,7 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
                     }
                 }}
                 label={i18n.t('Authentication Scheme')}
+                inputWidth="400px"
             >
                 <SingleSelectOption
                     label="None"
@@ -44,6 +52,8 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
             {type === 'http-basic' && (
                 <>
                     <InputField
+                        dataTest="input-auth-username"
+                        className="form-field"
                         value={authConfig.username}
                         onChange={({ value: username }) =>
                             updateAuthConfig({ username })
@@ -51,7 +61,10 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
                         label={i18n.t('Username')}
                     />
                     <InputField
+                        dataTest="input-auth-password"
+                        className="form-field"
                         type="password"
+                        autoComplete="off"
                         value={authConfig.password}
                         onChange={({ value: password }) =>
                             updateAuthConfig({ password })
@@ -63,7 +76,9 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
             {type === 'api-token' && (
                 <>
                     <InputField
+                        dataTest="input-auth-token"
                         type="password"
+                        className="form-field"
                         value={authConfig.token}
                         onChange={({ value: token }) =>
                             updateAuthConfig({ token })
@@ -72,6 +87,7 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
                     />
                 </>
             )}
+            {authConfig?.type && <Divider />}
         </>
     )
 }

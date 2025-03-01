@@ -10,8 +10,10 @@ import {
     IconLaunch16,
     Switch,
     NoticeBox,
+    IconEdit16,
 } from '@dhis2/ui'
 import React from 'react'
+import { useNavigate } from 'react-router'
 import { ApiRouteData } from '../../types/RouteInfo'
 import RouteActions from './RouteActions'
 import styles from './RoutesTable.module.css'
@@ -20,7 +22,6 @@ type RoutesTableProps = {
     routes: ApiRouteData[]
     showPermissionError: boolean
     showTestRouteModal: (route: ApiRouteData) => void
-    showEditRouteModal: (route: ApiRouteData) => void
     deleteRoute: (routeCode: string) => Promise<void>
     showSharingDialog: (route: ApiRouteData) => void
     onToggle: (route: ApiRouteData, disabled: boolean) => Promise<void>
@@ -30,7 +31,6 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
     routes,
     showPermissionError,
     showTestRouteModal,
-    showEditRouteModal,
     deleteRoute,
     showSharingDialog,
     onToggle,
@@ -38,6 +38,8 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
     const toggleRoute = async (route, disabled) => {
         await onToggle(route, disabled)
     }
+
+    const navigate = useNavigate()
     return (
         <DataTable>
             <DataTableHead>
@@ -129,12 +131,22 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
                                     >
                                         {i18n.t('Test route')}
                                     </Button>{' '}
+                                    <Button
+                                        icon={<IconEdit16 />}
+                                        title={i18n.t('Edit route')}
+                                        aria-label={i18n.t('Edit route')}
+                                        disabled={route.disabled}
+                                        small
+                                        onClick={() => {
+                                            navigate(
+                                                `/create-route/${route.id}`
+                                            )
+                                        }}
+                                    ></Button>{' '}
                                     <RouteActions
+                                        routeId={route.id}
                                         showSharingDialog={() =>
                                             showSharingDialog(route)
-                                        }
-                                        showEditRouteModal={() =>
-                                            showEditRouteModal(route)
                                         }
                                         deleteRoute={() =>
                                             deleteRoute(route.id)

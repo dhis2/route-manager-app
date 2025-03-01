@@ -10,24 +10,30 @@ import {
     IconShare16,
 } from '@dhis2/ui'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
 
 type RouteActionsProps = {
+    routeId: string
     showSharingDialog: VoidFunction
-    showEditRouteModal: VoidFunction
     deleteRoute: VoidFunction
 }
 
 const RouteActions: React.FC<RouteActionsProps> = ({
+    routeId,
     showSharingDialog,
-    showEditRouteModal,
     deleteRoute,
 }) => {
     const [open, setOpen] = useState(false)
     const ref = React.useRef(null)
 
+    const navigate = useNavigate()
+
     return (
         <div ref={ref}>
             <Button
+                dataTest="button-more-actions"
+                title={i18n.t('more actions')}
+                aria-label={i18n.t('more actions')}
                 small
                 secondary
                 onClick={() => setOpen(!open)}
@@ -39,6 +45,7 @@ const RouteActions: React.FC<RouteActionsProps> = ({
                     placement="bottom-end"
                     reference={ref}
                     onClickOutside={() => setOpen(false)}
+                    dataTest="popover-more-actions"
                 >
                     <FlyoutMenu>
                         <MenuItem
@@ -46,8 +53,7 @@ const RouteActions: React.FC<RouteActionsProps> = ({
                             label={i18n.t('Edit')}
                             icon={<IconEdit16 />}
                             onClick={() => {
-                                showEditRouteModal()
-                                setOpen(false)
+                                navigate(`/create-route/${routeId}`)
                             }}
                         />
                         <MenuItem

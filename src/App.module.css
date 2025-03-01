@@ -7,6 +7,9 @@
     row-gap: 5px;
     padding: 10px;
 }
+.containerForm {
+    background-color: var(--colors-grey200);
+}
 
 .formContainer {
     display: flex;
@@ -21,6 +24,8 @@
     flex-direction: column;
     justify-content: end;
     align-items: end;
+    margin-top: 16px;
+    margin-bottom: 24px;
 }
 
 .tableContainerFooter {

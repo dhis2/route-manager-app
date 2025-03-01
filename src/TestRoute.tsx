@@ -84,6 +84,8 @@ const TestRoute: React.FC<TestRouteProps> = ({
                     routes: { resource },
                 })
 
+                show({ success: true })
+
                 return setResult(result)
             }
 
@@ -108,6 +110,8 @@ const TestRoute: React.FC<TestRouteProps> = ({
             const result = await engine.mutate(mutationOptions)
 
             setResult(result)
+
+            show({ success: true })
         } catch (error) {
             console.error(error)
             show({ error })
@@ -119,10 +123,11 @@ const TestRoute: React.FC<TestRouteProps> = ({
     const hasWildCardPath = route.url?.endsWith('**')
 
     return (
-        <Modal onClose={closeModal}>
+        <Modal dataTest="modal-test-route" onClose={closeModal}>
             <ModalActions>
                 <ButtonStrip end>
                     <Button
+                        data-test="button-test-route-perform-test"
                         loading={loading}
                         disabled={loading}
                         primary
@@ -130,12 +135,16 @@ const TestRoute: React.FC<TestRouteProps> = ({
                     >
                         {i18n.t('Test Route')}
                     </Button>{' '}
+                    <Button secondary onClick={closeModal}>
+                        {i18n.t('Cancel')}
+                    </Button>
                 </ButtonStrip>
             </ModalActions>
             <ModalTitle>{i18n.t('Test Route')}</ModalTitle>
             <ModalContent>
                 <div className={classes.formContainer}>
                     <SingleSelectField
+                        dataTest="select-test-route-verb"
                         filterable={false}
                         selected={verb}
                         onChange={({ selected }) => {
@@ -168,16 +177,19 @@ const TestRoute: React.FC<TestRouteProps> = ({
                         ></SingleSelectOption>
                     </SingleSelectField>
                     <InputField
+                        dataTest="input-test-route-code"
                         disabled
                         value={route?.code}
                         label={i18n.t('Route code')}
                     />
                     <InputField
+                        dataTest="input-test-route-name"
                         disabled
                         value={route?.name}
                         label={i18n.t('Route Name')}
                     />
                     <InputField
+                        dataTest="input-test-route-url"
                         disabled
                         value={route?.url}
                         label={i18n.t('Route URL')}
@@ -185,6 +197,7 @@ const TestRoute: React.FC<TestRouteProps> = ({
 
                     {hasWildCardPath && (
                         <InputField
+                            dataTest="input-wildcard-path"
                             value={wildcard}
                             onChange={({ value }) => setWildcard(value)}
                             label={i18n.t('Wildcard path')}
@@ -193,6 +206,7 @@ const TestRoute: React.FC<TestRouteProps> = ({
 
                     {verb === 'GET' && !hasWildCardPath && (
                         <InputField
+                            dataTest="input-query-params"
                             value={queryParams}
                             placeholder={'query1=value&query2=value2...'}
                             onChange={({ value }) => setQueryParams(value)}

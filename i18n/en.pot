@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-02-12T11:36:54.270Z\n"
-"PO-Revision-Date: 2025-02-12T11:36:54.270Z\n"
+"POT-Creation-Date: 2025-02-28T07:38:22.325Z\n"
+"PO-Revision-Date: 2025-02-28T07:38:22.325Z\n"
 
 msgid "Failed to invoke route: {{error}}"
 msgstr "Failed to invoke route: {{error}}"
@@ -56,6 +56,21 @@ msgstr "Clear"
 msgid "No authority found"
 msgstr "No authority found"
 
+msgid "Headers"
+msgstr "Headers"
+
+msgid "Static headers to add to the route"
+msgstr "Static headers to add to the route"
+
+msgid "Header name"
+msgstr "Header name"
+
+msgid "Header value"
+msgstr "Header value"
+
+msgid "Add"
+msgstr "Add"
+
 msgid "Authentication Scheme"
 msgstr "Authentication Scheme"
 
@@ -74,14 +89,11 @@ msgstr "Route saved successfully"
 msgid "Failed to save route: {{error}}"
 msgstr "Failed to save route: {{error}}"
 
-msgid "Route details"
-msgstr "Route details"
+msgid "Edit route"
+msgstr "Edit route"
 
-msgid "Save Route"
-msgstr "Save Route"
-
-msgid "Cancel"
-msgstr "Cancel"
+msgid "Create route"
+msgstr "Create route"
 
 msgid "A unique code for the route"
 msgstr "A unique code for the route"
@@ -94,6 +106,12 @@ msgstr "e.g. https://postman-echo.com/get"
 
 msgid "URL for route destination"
 msgstr "URL for route destination"
+
+msgid "Save Route"
+msgstr "Save Route"
+
+msgid "Cancel"
+msgstr "Cancel"
 
 msgid "Edit"
 msgstr "Edit"
