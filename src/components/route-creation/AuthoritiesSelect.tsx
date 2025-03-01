@@ -22,7 +22,7 @@ const AuthoritiesSelect: React.FC<AuthoritiesSelectProps> = ({
         <Box width="400px">
             <Field
                 label={i18n.t('Authorities')}
-                helpText={i18n.t('Restrict access to cerain authorities')}
+                helpText={i18n.t('Restrict access to certain authorities')}
                 className="form-field"
                 dataTest="select-authorities"
             >
