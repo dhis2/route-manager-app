@@ -5,7 +5,7 @@ import App from './App'
 
 it('renders without crashing', () => {
     render(
-        <CustomDataProvider data={{}}>
+        <CustomDataProvider data={{ routes: [], me: {}, authorities: [] }}>
             <App />
         </CustomDataProvider>
     )

@@ -8,6 +8,10 @@ export type RouteAuthConfig =
       }
     | { type: 'api-token'; token: string }
 
+export type CustomHeaders = {
+    [key in string]: string
+}
+
 export type ApiRouteData = {
     id: string
     url: string
@@ -16,6 +20,7 @@ export type ApiRouteData = {
     disabled: boolean
     auth?: RouteAuthConfig
     authorities?: string[]
+    headers?: CustomHeaders
 }
 
 export type ApiRouteCreationPayload = Omit<ApiRouteData, 'id'> & {
@@ -35,4 +40,8 @@ export type WrapQueryResponse<
     [K in S]: {
         [K in R]: T
     }
+}
+
+export type WrapQueryResponseSingle<T, S extends string> = {
+    [K in S]: T
 }

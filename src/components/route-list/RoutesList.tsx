@@ -7,8 +7,8 @@ import {
 import i18n from '@dhis2/d2-i18n'
 import { Button, SharingDialog } from '@dhis2/ui'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
 import classes from '../../App.module.css'
-import { UpsertRoute } from '../../components/route-creation'
 import TestRoute from '../../TestRoute'
 import { ApiRouteData, WrapQueryResponse } from '../../types/RouteInfo'
 import RoutesTable from './RoutesTable'
@@ -50,6 +50,8 @@ type Authority = {
 const RoutesList = () => {
     const [sharingDialogId, setSharingDialogId] = useState<string>()
     const [userHasPermissions, setUserHasPermissions] = useState(true)
+
+    const navigate = useNavigate()
 
     const confirmDeleteAlert = useAlert(
         i18n.t('Are you sure you want to delete this route?'),
@@ -103,7 +105,6 @@ const RoutesList = () => {
     >(listRoutesQuery)
 
     const routes = data?.routes?.routes
-    const authorities = data?.authorities.systemAuthorities
 
     const userAuthorities = data?.currentUser?.authorities
 
@@ -125,14 +126,9 @@ const RoutesList = () => {
         refetchRoutesList()
     }
 
-    const [isCreateModalVisible, showCreateModal] = useState(false)
     const [isTestRouteModalVisible, showTestRouteModal] = useState(false)
 
     const [activeRoute, setActiveRoute] = useState<ApiRouteData>(undefined)
-
-    const handleShowCreateModal = () => {
-        showCreateModal(true)
-    }
 
     const handleShowSharingDialog = (route: ApiRouteData) => {
         setSharingDialogId(route.id)
@@ -141,21 +137,6 @@ const RoutesList = () => {
     const handleShowTestModal = (route: ApiRouteData) => {
         setActiveRoute(route)
         showTestRouteModal(true)
-    }
-
-    const handleEditRoute = (route: ApiRouteData) => {
-        setActiveRoute(route)
-        showCreateModal(true)
-    }
-
-    const onSave = () => {
-        refetchRoutesList()
-        showCreateModal(false)
-    }
-
-    const onCloseCreateRouteModal = () => {
-        showCreateModal(false)
-        setActiveRoute(undefined)
     }
 
     const onCloseTestModal = () => {
@@ -185,16 +166,7 @@ const RoutesList = () => {
     }
 
     return (
-        <div className={classes.container}>
-            {isCreateModalVisible && (
-                <UpsertRoute
-                    route={activeRoute}
-                    closeModal={onCloseCreateRouteModal}
-                    onSave={onSave}
-                    authorities={authorities}
-                />
-            )}
-
+        <div>
             {isTestRouteModalVisible && (
                 <TestRoute route={activeRoute} closeModal={onCloseTestModal} />
             )}
@@ -210,14 +182,13 @@ const RoutesList = () => {
             )}
 
             <div className={classes.actionsStrip}>
-                <Button onClick={handleShowCreateModal}>
+                <Button onClick={() => navigate('create-route')}>
                     {i18n.t('Create New Route')}
                 </Button>
             </div>
 
             <RoutesTable
                 routes={routes}
-                showEditRouteModal={handleEditRoute}
                 showTestRouteModal={handleShowTestModal}
                 showSharingDialog={handleShowSharingDialog}
                 deleteRoute={handleDeleteRoute}

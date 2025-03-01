@@ -1,0 +1,12 @@
+.addHeaderRow {
+    display: flex;
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.headersTable {
+    width: 100%;
+    margin-bottom: 10px;
+}

@@ -19,13 +19,17 @@
         "@dhis2/cli-app-scripts": "^12.3.0",
         "@dhis2/cli-style": "^10.7.6",
         "@testing-library/dom": "^10.4.0",
+        "@testing-library/jest-dom": "^6.6.3",
         "@testing-library/react": "^16.2.0",
-        "@types/jest": "^29.5.13",
+        "@testing-library/user-event": "^14.6.1",
+        "@types/": "testing-library/jest-dom",
+        "@types/jest": "^29.5.14",
         "@types/react": "^19.0.8",
         "@types/react-dom": "^19.0.3"
     },
     "dependencies": {
         "@dhis2/app-runtime": "^3.13.2",
-        "@dhis2/ui": "^10.1.11"
+        "@dhis2/ui": "^10.1.11",
+        "react-router": "^7.2.0"
     }
 }
