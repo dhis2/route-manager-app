@@ -1,3 +1,10 @@
+# [100.4.0](https://github.com/dhis2/route-manager-app/compare/v100.3.4...v100.4.0) (2025-03-25)
+
+
+### Features
+
+* allow defining custom static headers for routes ([1fd5237](https://github.com/dhis2/route-manager-app/commit/1fd5237e20c6a6a224617d1e8c6e9523dec9c76a))
+
 ## [100.3.4](https://github.com/dhis2/route-manager-app/compare/v100.3.3...v100.3.4) (2025-02-13)
 
 
