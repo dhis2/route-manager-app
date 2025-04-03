@@ -1,3 +1,10 @@
+## [100.4.1](https://github.com/dhis2/route-manager-app/compare/v100.4.0...v100.4.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* use HashRouter to fix loading issue in DHIS instances ([66176e3](https://github.com/dhis2/route-manager-app/commit/66176e30620fe4051b5e46a7611780f973af7429))
+
 # [100.4.0](https://github.com/dhis2/route-manager-app/compare/v100.3.4...v100.4.0) (2025-03-25)
 
 
