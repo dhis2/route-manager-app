@@ -2,7 +2,7 @@ import { CssReset, CssVariables } from '@dhis2/ui'
 import clx from 'classnames'
 import React from 'react'
 import './locales'
-import { BrowserRouter, Outlet, Route, Routes, useLocation } from 'react-router'
+import { HashRouter, Outlet, Route, Routes, useLocation } from 'react-router'
 import styles from './App.module.css'
 import { UpsertRoute } from './components/route-creation'
 import { RoutesList } from './components/route-list'
@@ -29,7 +29,7 @@ const Root = () => {
 
 const MyApp = () => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
                 <Route path="/" element={<Root />}>
                     <Route index element={<RoutesList />} />
@@ -39,7 +39,7 @@ const MyApp = () => {
                     />
                 </Route>
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
