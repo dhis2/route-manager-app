@@ -1,12 +1,12 @@
 ## The Route Manager app { #route_manager_app }
 
-The core team has developed an app "The Route Manager app" to provides a user interface to manage routes through the Route API.
+The core team has developed the Route Manager app to provide a user interface to manage routes through the Route API.
 
 ![Routes list](./resources/route-manager-list.png)
 
 ### App functionality
 
-The app provides a User Interface for the API described above. It is inevitable that the API will be ahead of the app at certain times, but the app is on continuous release and will catch up with the API as soon as possible. For these use cases, you can always directly use the API (or contribute to the app on GitHub - we welcome contributions!)
+The app provides a user interface for the API described above. It is inevitable that the API will be ahead of the app at certain times, but the app is on continuous release and will catch up with the API as soon as possible. For these use cases, you can always directly use the API (or contribute to the app on GitHub - we welcome contributions!)
 
 The following is an overview of the functionality supported by the app.
 
@@ -28,13 +28,13 @@ The API is ahead of the app sometimes in terms of the functionalities it provide
 
 #### Editing, deleting and disabling existing routes
 
-In the routes list on the home page of the app, we provide ability to easily perform several maintenance tasks such as editing a route, deleting it, disabling it, or sharing it.
+In the routes list on the home page of the app, one can perform several maintenance tasks such as editing a route, deleting it, disabling it, or sharing it.
 
-Enabling and disabling it can be performed from the toggle button on each row.
+Enabling or disabling a route can be performed with the toggle button on each row.
 
-You can go to the Edit page by clicking the small pencil icon. This will take you to a page similar to the Create page where you can edit the route.
+To edit a route, click the small pencil icon. This will take you to a page similar to the _Create_ page where you can edit the route.
 
-And you can click the three dots icon to get the extra options to delete or share a route.
+Click the three dots icon in the right column of the routes table to view extra options for the route, delete it, or edit sharing settings for it.
 
 ![Manage routes](./resources/route-manager-list-manage-options.png)
 
