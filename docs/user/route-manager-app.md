@@ -12,13 +12,13 @@ The following is an overview of the functionality supported by the app.
 
 #### Creating new routes
 
-Through the app, you can create a new route by going to the Create New Route page (top-right of Home Screen).
+Through the app, you can create a new route by going to the _Create New Route_ page (button top-right of the Home Screen).
 
 ![Creating Routes](./resources/route-manager-create-route.png)
 
 The page allows you to define the different properties of the route. You can check the Route API documentation above for more details.
 
-Other than the basic routes, you can also setup different authentication schemes, restrict the authorities that can run the route, and define static headers for the route.
+Other than the basic routes parameters, you can also setup different authentication schemes, restrict the authorities that can run the route, and define static headers for the route.
 
 ![Manage Routes auth scheme](./resources/route-manager-auth-schemes.png)
 
@@ -40,15 +40,15 @@ Click the three dots icon in the right column of the routes table to view extra 
 
 #### Testing routes
 
-You can test a route by clicking the "Test route" button on the Routes List. This opens a screen where you can use the route to invoke the upstream server. It allows you to pass query params, the body of the request (for non-GET requests) or the rest of the path of the upstream server for wildcard routes.
+You can test a route by clicking the _Test route_ button on the _Routes List_. This opens a screen where you can use the route to invoke the upstream server. It allows you to pass query params, the body of the request (for non-GET requests) or the rest of the path of the upstream server for wildcard routes.
 
 ![Test routes](./resources/route-manager-test-route.png)
 
-On clicking Test Route, the upstream endpoint will be invoked and the result displayed.
+On clicking _Test Route_, the upstream endpoint will be invoked and the result displayed.
 
 #### Configuring the route metadata sharing
 
-From the extended options in the Routes list (the three dots), you can open the Sharing dialog that allows to restrict access to a certain user or user group.
+From the extended options in the Routes list (the three dots), you can open the _Sharing_ dialog that allows to restrict access to a certain user or user group.
 
 ![Route Sharing](./resources/route-manager-sharing.png)
 
