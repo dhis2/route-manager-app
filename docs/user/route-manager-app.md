@@ -1,16 +1,14 @@
-## The Route Manager app { #route_manager_app }
-
-The core team has developed the Route Manager app to provide a user interface to manage routes through the Route API.
+The core team has developed the Route Manager app to provide a user interface to manage routes through the [Route API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/route.html).
 
 ![Routes list](./resources/route-manager-list.png)
 
-### App functionality
+## App functionality
 
-The app provides a user interface for the API described above. It is inevitable that the API will be ahead of the app at certain times, but the app is on continuous release and will catch up with the API as soon as possible. For these use cases, you can always directly use the API (or contribute to the app on GitHub - we welcome contributions!)
+The app provides a user interface for the Route API. It is inevitable that the API will be ahead of the app at certain times, but the app is on continuous release and will catch up with the API as soon as possible. For these use cases, you can always directly use the API (or contribute to the app on GitHub - we welcome contributions!)
 
 The following is an overview of the functionality supported by the app.
 
-#### Creating new routes
+### Creating new routes
 
 Through the app, you can create a new route by going to the _Create New Route_ page (button top-right of the Home Screen).
 
@@ -26,7 +24,7 @@ Other than the basic routes parameters, you can also setup different authenticat
 
 The API is ahead of the app sometimes in terms of the functionalities it provides, i.e. it supports more authentication schemes, but the app is continuously being updated to catch up with the API.
 
-#### Editing, deleting and disabling existing routes
+### Editing, deleting and disabling existing routes
 
 In the routes list on the home page of the app, one can perform several maintenance tasks such as editing a route, deleting it, disabling it, or sharing it.
 
@@ -38,7 +36,7 @@ Click the three dots icon in the right column of the routes table to view extra 
 
 ![Manage routes](./resources/route-manager-list-manage-options.png)
 
-#### Testing routes
+### Testing routes
 
 You can test a route by clicking the _Test route_ button on the _Routes List_. This opens a screen where you can use the route to invoke the upstream server. It allows you to pass query params, the body of the request (for non-GET requests) or the rest of the path of the upstream server for wildcard routes.
 
@@ -46,13 +44,13 @@ You can test a route by clicking the _Test route_ button on the _Routes List_. T
 
 On clicking _Test Route_, the upstream endpoint will be invoked and the result displayed.
 
-#### Configuring the route metadata sharing
+### Configuring the route metadata sharing
 
 From the extended options in the Routes list (the three dots), you can open the _Sharing_ dialog that allows to restrict access to a certain user or user group.
 
 ![Route Sharing](./resources/route-manager-sharing.png)
 
-### How to get the app
+## How to get the Route Manager app
 
 The app is not bundled with DHIS2 but it can be installed in the App Management app under the [App Hub](https://apps.dhis2.org/app/5dbe9ab8-46bd-411e-b22f-905f08a81d78) apps.
 
