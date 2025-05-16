@@ -1,5 +1,7 @@
 The core team has developed the Route Manager app to provide a user interface to manage routes through the [Route API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/route.html).
 
+It is an optional app that is available on the [App Hub](https://apps.dhis2.org/app/5dbe9ab8-46bd-411e-b22f-905f08a81d78), and can be downloaded there or installed on an instance through the [App Management app](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/maintaining-the-system/installing-applications.html).
+
 ![Routes list](./resources/route-manager-list.png)
 
 ## App functionality
