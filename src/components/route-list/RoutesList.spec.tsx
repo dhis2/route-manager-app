@@ -51,6 +51,77 @@ describe('Listing routes', () => {
             expect(getByText(route.id)).toBeInTheDocument()
         })
     })
+    describe('user authorities', () => {
+        const errorMessage =
+            /The current user does not have the necessary permissions to configure routes/
+        it('should display an error when the user does not have authorities', async () => {
+            const { findByText, queryByText } = render(
+                <TestComponentWithRouter
+                    path="/"
+                    customData={{
+                        me: { authorities: [] },
+                        routes: mockRoutes,
+                        authorities: [],
+                    }}
+                >
+                    <RoutesList />
+                </TestComponentWithRouter>
+            )
+
+            await findByText(errorMessage)
+            expect(queryByText(errorMessage)).toBeInTheDocument()
+        })
+
+        it('should not display error if user has correct authorities', async () => {
+            const { findByText, queryByText, rerender } = render(
+                <TestComponentWithRouter
+                    path="/"
+                    customData={{
+                        me: { authorities: ['ALL'] },
+                        authorities: [],
+                        routes: mockRoutes,
+                    }}
+                >
+                    <RoutesList />
+                </TestComponentWithRouter>
+            )
+            await findByText('code-1')
+            expect(queryByText(errorMessage)).not.toBeInTheDocument()
+
+            rerender(
+                <TestComponentWithRouter
+                    path="/"
+                    customData={{
+                        authorities: [],
+                        me: { authorities: ['F_ROUTE_PUBLIC_ADD'] },
+                        routes: mockRoutes,
+                    }}
+                >
+                    <RoutesList />
+                </TestComponentWithRouter>
+            )
+            await findByText('code-1')
+            expect(queryByText(errorMessage)).not.toBeInTheDocument()
+        })
+
+        it('should display an error with a random authority', async () => {
+            const { findByText } = render(
+                <TestComponentWithRouter
+                    path="/"
+                    customData={{
+                        authorities: [],
+                        me: { authorities: ['RANDOM_AUTHORITY'] },
+                        routes: mockRoutes,
+                    }}
+                >
+                    <RoutesList />
+                </TestComponentWithRouter>
+            )
+            await findByText(errorMessage)
+            expect(await findByText(errorMessage)).toBeInTheDocument()
+        })
+    })
+
     it('should show enable/disable button properly', async () => {
         const { getAllByLabelText, findByText } = render(
             <TestComponentWithRouter
