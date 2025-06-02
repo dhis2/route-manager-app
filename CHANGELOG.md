@@ -1,3 +1,10 @@
+## [100.4.2](https://github.com/dhis2/route-manager-app/compare/v100.4.1...v100.4.2) (2025-06-02)
+
+
+### Bug Fixes
+
+* do not show permission error when user has ALL authority ([b47f0ef](https://github.com/dhis2/route-manager-app/commit/b47f0efadd902a621c676e60619da4332e972bda))
+
 ## [100.4.1](https://github.com/dhis2/route-manager-app/compare/v100.4.0...v100.4.1) (2025-04-03)
 
 
