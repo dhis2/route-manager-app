@@ -1,3 +1,10 @@
+## [100.4.3-alpha.1](https://github.com/dhis2/route-manager-app/compare/v100.4.2...v100.4.3-alpha.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* force a build from alpha ([cb8fa8e](https://github.com/dhis2/route-manager-app/commit/cb8fa8e601462a88a7c77c195f98bd549728344a))
+
 ## [100.4.2](https://github.com/dhis2/route-manager-app/compare/v100.4.1...v100.4.2) (2025-06-02)
 
 
