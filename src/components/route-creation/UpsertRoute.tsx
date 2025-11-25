@@ -24,7 +24,7 @@ import AuthoritiesSelect from './AuthoritiesSelect'
 import CustomHeadersAdmin from './CustomHeadersAdmin'
 import RouteAuthAdmin from './RouteAuthAdmin'
 import styles from './UpsertRoute.module.css'
-import { routeDestinationUrl } from './validators'
+import { routeDestinationUrl } from './Validators'
 
 const createRouteMutation = {
     resource: 'routes',
