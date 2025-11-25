@@ -39,10 +39,12 @@ describe('routeDestinationUrl', () => {
     })
 
     describe('invalid values', () => {
-        it.each(['', '   ', 'not a url', 'http://:8080/path'])
-            ('rejects malformed input %s', (value) => {
+        it.each(['', '   ', 'not a url', 'http://:8080/path'])(
+            'rejects malformed input %s',
+            (value) => {
                 expectInvalid(value, invalidUrlMessage)
-            })
+            }
+        )
 
         it('rejects unsupported protocols', () => {
             expectInvalid('test://localhost:4000/path', invalidProtocolMessage)
