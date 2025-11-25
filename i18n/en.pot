@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-02-28T07:38:22.325Z\n"
-"PO-Revision-Date: 2025-02-28T07:38:22.325Z\n"
+"POT-Creation-Date: 2025-11-25T11:22:10.945Z\n"
+"PO-Revision-Date: 2025-11-25T11:22:10.945Z\n"
 
 msgid "Failed to invoke route: {{error}}"
 msgstr "Failed to invoke route: {{error}}"
@@ -16,6 +16,9 @@ msgstr "Route invoked successfully"
 
 msgid "Test Route"
 msgstr "Test Route"
+
+msgid "Cancel"
+msgstr "Cancel"
 
 msgid "Route code"
 msgstr "Route code"
@@ -44,8 +47,8 @@ msgstr "Body of request"
 msgid "Authorities"
 msgstr "Authorities"
 
-msgid "Restrict access to cerain authorities"
-msgstr "Restrict access to cerain authorities"
+msgid "Restrict access to certain authorities"
+msgstr "Restrict access to certain authorities"
 
 msgid "Select authorities"
 msgstr "Select authorities"
@@ -68,6 +71,9 @@ msgstr "Header name"
 msgid "Header value"
 msgstr "Header value"
 
+msgid "Remove Header"
+msgstr "Remove Header"
+
 msgid "Add"
 msgstr "Add"
 
@@ -83,14 +89,23 @@ msgstr "Password"
 msgid "Token"
 msgstr "Token"
 
+msgid "Client ID"
+msgstr "Client ID"
+
+msgid "Client Secret"
+msgstr "Client Secret"
+
+msgid "Token URI"
+msgstr "Token URI"
+
 msgid "Route saved successfully"
 msgstr "Route saved successfully"
 
 msgid "Failed to save route: {{error}}"
 msgstr "Failed to save route: {{error}}"
 
-msgid "Edit route"
-msgstr "Edit route"
+msgid "Edit route: {{name}}"
+msgstr "Edit route: {{name}}"
 
 msgid "Create route"
 msgstr "Create route"
@@ -110,8 +125,8 @@ msgstr "URL for route destination"
 msgid "Save Route"
 msgstr "Save Route"
 
-msgid "Cancel"
-msgstr "Cancel"
+msgid "more actions"
+msgstr "more actions"
 
 msgid "Edit"
 msgstr "Edit"
@@ -160,3 +175,6 @@ msgstr "Enable route"
 
 msgid "Test route"
 msgstr "Test route"
+
+msgid "Edit route"
+msgstr "Edit route"

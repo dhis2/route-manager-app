@@ -210,6 +210,62 @@ describe('Creating a route', () => {
         })
     })
 
+    it('should send the correct data (oauth2 client credentials authentication)', async () => {
+        const { getByTestId, getByText } = render(
+            <TestComponentWithRouter
+                path="/create-route"
+                customData={{ authorities: [] }}
+            >
+                <UpsertRoute />
+            </TestComponentWithRouter>
+        )
+
+        const user = userEvent.setup()
+
+        await user.type(
+            getByTestId('input-code').querySelector('input'),
+            'code-1'
+        )
+        await user.type(
+            getByTestId('input-name').querySelector('input'),
+            'name-1'
+        )
+        await user.type(
+            getByTestId('input-url').querySelector('input'),
+            'https://postman-echo.com/get'
+        )
+
+        await user.click(
+            within(getByTestId('select-authentication')).getByText('None')
+        )
+        await user.click(getByText('OAuth2 Client Credentials'))
+
+        await user.type(
+            within(getByTestId('input-auth-client-id')).getByRole('textbox'),
+            'alice'
+        )
+        await user.type(
+            getByTestId('input-auth-client-secret').querySelector(
+                '[type="password"]'
+            ),
+            'passw0rd'
+        )
+        await user.type(
+            within(getByTestId('input-auth-token-uri')).getByRole('textbox'),
+            'https://token-service/token'
+        )
+
+        await user.click(getByText('Save Route'))
+
+        expect(mutateSpy).toHaveBeenCalledTimes(1)
+        expect(mutateSpy.mock.calls[0][0].data.auth).toEqual({
+            type: 'oauth2-client-credentials',
+            clientId: 'alice',
+            clientSecret: 'passw0rd',
+            tokenUri: 'https://token-service/token',
+        })
+    })
+
     it('should send the correct data (authorities)', async () => {
         const { getByTestId, getByText } = render(
             <TestComponentWithRouter
