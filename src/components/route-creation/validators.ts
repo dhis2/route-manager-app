@@ -34,7 +34,7 @@ export const routeDestinationUrl = (value?: string) => {
         }
 
         return undefined
-    } catch (error) {
+    } catch {
         return invalidUrlMessage()
     }
 }
