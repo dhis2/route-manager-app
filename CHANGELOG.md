@@ -1,3 +1,10 @@
+## [100.4.3](https://github.com/dhis2/route-manager-app/compare/v100.4.2...v100.4.3) (2025-11-27)
+
+
+### Bug Fixes
+
+* route url validation (allow localhost and IPs) ([#32](https://github.com/dhis2/route-manager-app/issues/32)) ([689c3ce](https://github.com/dhis2/route-manager-app/commit/689c3ce6f66420672265947073b829ad2e723dd1))
+
 ## [100.4.2](https://github.com/dhis2/route-manager-app/compare/v100.4.1...v100.4.2) (2025-06-02)
 
 

@@ -125,6 +125,16 @@ msgstr "URL for route destination"
 msgid "Save Route"
 msgstr "Save Route"
 
+msgid ""
+"Enter a valid URL, for example http://localhost:5000/path or "
+"https://example.com"
+msgstr ""
+"Enter a valid URL, for example http://localhost:5000/path or "
+"https://example.com"
+
+msgid "Only http or https URLs are allowed"
+msgstr "Only http or https URLs are allowed"
+
 msgid "more actions"
 msgstr "more actions"
 

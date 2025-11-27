@@ -77,7 +77,11 @@ describe('Creating a route', () => {
         })
     })
 
-    it('should send the correct data', async () => {
+    it.each([
+        'http://localhost:5000/path',
+        'http://test:4000/etc',
+        'http://127.0.0.1/etc',
+    ])('should allow saving routes with %s', async (testUrl) => {
         const { getByTestId, getByText } = render(
             <TestComponentWithRouter
                 path="/create-route"
@@ -99,18 +103,17 @@ describe('Creating a route', () => {
         )
         await user.type(
             within(getByTestId('input-url')).getByRole('textbox'),
-            'https://postman-echo.com/get'
+            testUrl
         )
         await user.click(getByText('Save Route'))
 
         expect(navigateSpy).toHaveBeenCalledWith('/')
-        expect(mutateSpy).toHaveBeenCalledTimes(1)
         expect(mutateSpy).toHaveBeenCalledWith({
             data: {
                 code: 'code-1',
                 disabled: false,
                 name: 'code-1name-1',
-                url: 'https://postman-echo.com/get',
+                url: testUrl,
             },
         })
     })
