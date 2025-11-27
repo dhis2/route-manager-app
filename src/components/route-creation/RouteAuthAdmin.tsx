@@ -1,3 +1,4 @@
+import { useConfig } from '@dhis2/app-runtime'
 import i18n from '@dhis2/d2-i18n'
 import {
     SingleSelectField,
@@ -18,6 +19,8 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
     updateAuthConfig,
 }) => {
     const { type } = authConfig
+    const config = useConfig()
+    const oauthSupported = config.serverVersion.minor >= 42
 
     return (
         <>
@@ -48,10 +51,12 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
                     label="API Token"
                     value="api-token"
                 ></SingleSelectOption>
-                <SingleSelectOption
-                    label="OAuth2 Client Credentials"
-                    value="oauth2-client-credentials"
-                ></SingleSelectOption>
+                {oauthSupported && (
+                    <SingleSelectOption
+                        label="OAuth2 Client Credentials"
+                        value="oauth2-client-credentials"
+                    ></SingleSelectOption>
+                )}
             </SingleSelectField>
             {type === 'http-basic' && (
                 <>
