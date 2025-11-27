@@ -7,7 +7,6 @@ import {
     ReactFinalForm,
     InputFieldFF,
     hasValue,
-    url,
     composeValidators,
 } from '@dhis2/ui'
 import React, { useEffect, useState } from 'react'
@@ -25,6 +24,7 @@ import AuthoritiesSelect from './AuthoritiesSelect'
 import CustomHeadersAdmin from './CustomHeadersAdmin'
 import RouteAuthAdmin from './RouteAuthAdmin'
 import styles from './UpsertRoute.module.css'
+import { routeDestinationUrl } from './Validators'
 
 const createRouteMutation = {
     resource: 'routes',
@@ -266,7 +266,7 @@ const UpsertRoute = () => {
                                         className="form-field"
                                         validate={composeValidators(
                                             hasValue,
-                                            url
+                                            routeDestinationUrl
                                         )}
                                         name="url"
                                         initialValue={route?.url}
