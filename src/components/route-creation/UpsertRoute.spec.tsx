@@ -224,6 +224,34 @@ describe('Creating a route', () => {
         })
     })
 
+    it('should NOT show OAuth2 client credentials option on DHIS2 versions < 2.42', async () => {
+        jest.mocked(useConfig).mockReturnValue({
+            baseUrl: 'http://localhost:8080',
+            apiVersion: 41,
+            serverVersion: {
+                major: 2,
+                minor: 41,
+                full: '2.41.0',
+            },
+        } as ReturnType<typeof useConfig>)
+
+        const { getByTestId, queryByText } = render(
+            <TestComponentWithRouter
+                path="/create-route"
+                customData={{ authorities: [] }}
+            >
+                <UpsertRoute />
+            </TestComponentWithRouter>
+        )
+
+        const user = userEvent.setup()
+        const authSelect = getByTestId('select-authentication')
+        await user.click(
+            within(authSelect).getByTestId('dhis2-uicore-select-input')
+        )
+        expect(queryByText('OAuth2 Client Credentials')).not.toBeInTheDocument()
+    })
+
     it('should send the correct data (oauth2 client credentials authentication) on DHIS2 2.42+', async () => {
         jest.mocked(useConfig).mockReturnValue({
             serverVersion: { major: 2, minor: 42, full: '2.42.0' },

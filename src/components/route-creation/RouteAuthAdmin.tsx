@@ -20,7 +20,7 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
 }) => {
     const { type } = authConfig
     const config = useConfig()
-    const oauthSupported = config.serverVersion.minor >= 42
+    const oauthSupported = config?.serverVersion?.minor >= 42
 
     return (
         <>
