@@ -1,3 +1,4 @@
+import { useConfig } from '@dhis2/app-runtime'
 import i18n from '@dhis2/d2-i18n'
 import {
     SingleSelectField,
@@ -18,6 +19,8 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
     updateAuthConfig,
 }) => {
     const { type } = authConfig
+    const config = useConfig()
+    const oauthSupported = config?.serverVersion?.minor >= 42
 
     return (
         <>
@@ -48,6 +51,12 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
                     label="API Token"
                     value="api-token"
                 ></SingleSelectOption>
+                {oauthSupported && (
+                    <SingleSelectOption
+                        label="OAuth2 Client Credentials"
+                        value="oauth2-client-credentials"
+                    ></SingleSelectOption>
+                )}
             </SingleSelectField>
             {type === 'http-basic' && (
                 <>
@@ -84,6 +93,40 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
                             updateAuthConfig({ token })
                         }
                         label={i18n.t('Token')}
+                    />
+                </>
+            )}
+            {type === 'oauth2-client-credentials' && (
+                <>
+                    <InputField
+                        dataTest="input-auth-client-id"
+                        className="form-field"
+                        value={authConfig.clientId}
+                        onChange={({ value: clientId }) =>
+                            updateAuthConfig({ clientId })
+                        }
+                        label={i18n.t('Client ID')}
+                    />
+                    <InputField
+                        dataTest="input-auth-client-secret"
+                        className="form-field"
+                        type="password"
+                        autoComplete="off"
+                        value={authConfig.clientSecret}
+                        onChange={({ value: clientSecret }) =>
+                            updateAuthConfig({ clientSecret })
+                        }
+                        label={i18n.t('Client Secret')}
+                    />
+                    <InputField
+                        dataTest="input-auth-token-uri"
+                        className="form-field"
+                        value={authConfig.tokenUri}
+                        onChange={({ value: tokenUri }) =>
+                            updateAuthConfig({ tokenUri })
+                        }
+                        label={i18n.t('Token URI')}
+                        placeholder={i18n.t('e.g. https://token-service/token')}
                     />
                 </>
             )}

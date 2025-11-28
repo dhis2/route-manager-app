@@ -1,4 +1,4 @@
-import { useDataMutation } from '@dhis2/app-runtime'
+import { useConfig, useDataMutation } from '@dhis2/app-runtime'
 import { render, within } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
 import * as React from 'react'
@@ -9,6 +9,7 @@ import UpsertRoute from './UpsertRoute'
 jest.mock('@dhis2/app-runtime', () => ({
     ...jest.requireActual('@dhis2/app-runtime'),
     useDataMutation: jest.fn(),
+    useConfig: jest.fn(),
 }))
 
 jest.mock('react-router', () => ({
@@ -37,6 +38,16 @@ beforeEach(() => {
 
     const useParamsMock = useParams as jest.Mock
     useParamsMock.mockReturnValue({})
+
+    jest.mocked(useConfig).mockReturnValue({
+        baseUrl: 'http://localhost:8080',
+        apiVersion: 41,
+        serverVersion: {
+            major: 2,
+            minor: 41,
+            full: '2.41.0',
+        },
+    } as ReturnType<typeof useConfig>)
 })
 
 describe('Creating a route', () => {
@@ -210,6 +221,96 @@ describe('Creating a route', () => {
         expect(mutateSpy.mock.calls[0][0].data.auth).toEqual({
             type: 'api-token',
             token: 'TOKEN-X',
+        })
+    })
+
+    it('should NOT show OAuth2 client credentials option on DHIS2 versions < 2.42', async () => {
+        jest.mocked(useConfig).mockReturnValue({
+            baseUrl: 'http://localhost:8080',
+            apiVersion: 41,
+            serverVersion: {
+                major: 2,
+                minor: 41,
+                full: '2.41.0',
+            },
+        } as ReturnType<typeof useConfig>)
+
+        const { getByTestId, queryByText } = render(
+            <TestComponentWithRouter
+                path="/create-route"
+                customData={{ authorities: [] }}
+            >
+                <UpsertRoute />
+            </TestComponentWithRouter>
+        )
+
+        const user = userEvent.setup()
+        const authSelect = getByTestId('select-authentication')
+        await user.click(
+            within(authSelect).getByTestId('dhis2-uicore-select-input')
+        )
+        expect(queryByText('OAuth2 Client Credentials')).not.toBeInTheDocument()
+    })
+
+    it('should send the correct data (oauth2 client credentials authentication) on DHIS2 2.42+', async () => {
+        jest.mocked(useConfig).mockReturnValue({
+            serverVersion: { major: 2, minor: 42, full: '2.42.0' },
+            apiVersion: 42,
+            baseUrl: 'http://localhost:8080',
+        })
+
+        const { getByTestId, getByText } = render(
+            <TestComponentWithRouter
+                path="/create-route"
+                customData={{ authorities: [] }}
+            >
+                <UpsertRoute />
+            </TestComponentWithRouter>
+        )
+
+        const user = userEvent.setup()
+
+        await user.type(
+            getByTestId('input-code').querySelector('input'),
+            'code-1'
+        )
+        await user.type(
+            getByTestId('input-name').querySelector('input'),
+            'name-1'
+        )
+        await user.type(
+            getByTestId('input-url').querySelector('input'),
+            'https://postman-echo.com/get'
+        )
+
+        await user.click(
+            within(getByTestId('select-authentication')).getByText('None')
+        )
+        await user.click(getByText('OAuth2 Client Credentials'))
+
+        await user.type(
+            within(getByTestId('input-auth-client-id')).getByRole('textbox'),
+            'alice'
+        )
+        await user.type(
+            getByTestId('input-auth-client-secret').querySelector(
+                '[type="password"]'
+            ),
+            'passw0rd'
+        )
+        await user.type(
+            within(getByTestId('input-auth-token-uri')).getByRole('textbox'),
+            'https://token-service/token'
+        )
+
+        await user.click(getByText('Save Route'))
+
+        expect(mutateSpy).toHaveBeenCalledTimes(1)
+        expect(mutateSpy.mock.calls[0][0].data.auth).toEqual({
+            type: 'oauth2-client-credentials',
+            clientId: 'alice',
+            clientSecret: 'passw0rd',
+            tokenUri: 'https://token-service/token',
         })
     })
 

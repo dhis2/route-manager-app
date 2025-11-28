@@ -1,4 +1,7 @@
-export type AuthScheme = 'http-basic' | 'api-token'
+export type AuthScheme =
+    | 'http-basic'
+    | 'api-token'
+    | 'oauth2-client-credentials'
 
 export type RouteAuthConfig =
     | {
@@ -7,6 +10,12 @@ export type RouteAuthConfig =
           password: string
       }
     | { type: 'api-token'; token: string }
+    | {
+          type: 'oauth2-client-credentials'
+          clientId: string
+          clientSecret: string
+          tokenUri: string
+      }
 
 export type CustomHeaders = {
     [key in string]: string
