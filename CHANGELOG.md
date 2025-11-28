@@ -1,3 +1,10 @@
+# [100.5.0](https://github.com/dhis2/route-manager-app/compare/v100.4.3...v100.5.0) (2025-11-28)
+
+
+### Features
+
+* oauth2 support ([#33](https://github.com/dhis2/route-manager-app/issues/33)) ([bdb775d](https://github.com/dhis2/route-manager-app/commit/bdb775dcc414d9b20ecfd3f00a8206aac9a0cbb4))
+
 ## [100.4.3](https://github.com/dhis2/route-manager-app/compare/v100.4.2...v100.4.3) (2025-11-27)
 
 
