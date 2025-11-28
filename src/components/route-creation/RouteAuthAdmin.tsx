@@ -126,9 +126,7 @@ const RouteAuthAdmin: React.FC<RouteAuthAdminProps> = ({
                             updateAuthConfig({ tokenUri })
                         }
                         label={i18n.t('Token URI')}
-                        placeholder={i18n.t(
-                            'e.g. https://token-service/token'
-                        )}
+                        placeholder={i18n.t('e.g. https://token-service/token')}
                     />
                 </>
             )}

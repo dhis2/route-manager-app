@@ -1,4 +1,7 @@
-export type AuthScheme = 'http-basic' | 'api-token' | 'oauth2-client-credentials'
+export type AuthScheme =
+    | 'http-basic'
+    | 'api-token'
+    | 'oauth2-client-credentials'
 
 export type RouteAuthConfig =
     | {
