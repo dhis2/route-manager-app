@@ -10,14 +10,16 @@
         "test": "d2-app-scripts test",
         "deploy": "d2-app-scripts deploy",
         "tsc": "tsc --noEmit",
-        "lint": "yarn tsc && d2-style check",
-        "lint:staged": "d2-style check --staged",
+        "lint": "yarn tsc && eslint && prettier -c .",
+        "lint:staged": "eslint --staged",
         "format": "d2-style apply",
         "format:staged": "d2-style apply --staged"
     },
     "devDependencies": {
         "@dhis2/cli-app-scripts": "^12.3.0",
         "@dhis2/cli-style": "^10.7.6",
+        "@dhis2/config-eslint": "^0.1.1",
+        "@dhis2/config-prettier": "^0.2.1",
         "@testing-library/dom": "^10.4.0",
         "@testing-library/jest-dom": "^6.6.3",
         "@testing-library/react": "^16.2.0",
@@ -25,7 +27,9 @@
         "@types/": "testing-library/jest-dom",
         "@types/jest": "^29.5.14",
         "@types/react": "^19.0.8",
-        "@types/react-dom": "^19.0.3"
+        "@types/react-dom": "^19.0.3",
+        "eslint": "^9.39.1",
+        "prettier": "^3.7.3"
     },
     "dependencies": {
         "@dhis2/app-runtime": "^3.13.2",
