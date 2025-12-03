@@ -75,8 +75,8 @@ const TestRoute: React.FC<TestRouteProps> = ({
                 wildcard
                     ? `/${wildcard}`
                     : queryParams
-                    ? `${queryPrefix}${queryParams}`
-                    : ''
+                      ? `${queryPrefix}${queryParams}`
+                      : ''
             }`
 
             if (verb === 'GET') {
