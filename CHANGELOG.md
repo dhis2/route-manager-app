@@ -1,3 +1,10 @@
+# [100.6.0](https://github.com/dhis2/route-manager-app/compare/v100.5.0...v100.6.0) (2026-01-13)
+
+
+### Features
+
+* **new-route:** more help text for name and code ([#36](https://github.com/dhis2/route-manager-app/issues/36)) ([6f55179](https://github.com/dhis2/route-manager-app/commit/6f55179a5e2bb913842419870d471e213ac8aabb))
+
 # [100.5.0](https://github.com/dhis2/route-manager-app/compare/v100.4.3...v100.5.0) (2025-11-28)
 
 
