@@ -543,6 +543,134 @@ describe('testing routes', () => {
     })
 })
 
+describe('authentication display', () => {
+    // Checks the display in the Datatablecell. Tests for auth variations (none, basic, api key, oauth - new authentications can be added here)
+    const authTestCases = [
+        {
+            name: 'http-basic with username',
+            auth: { type: 'http-basic', username: 'admin' },
+            expectedType: 'http-basic',
+            expectedDetails: ['username:admin'],
+        },
+        {
+            name: 'api-token with no additional fields',
+            auth: { type: 'api-token' },
+            expectedType: 'api-token',
+            expectedDetails: [],
+        },
+        {
+            name: 'oauth2-client-credentials with clientId and tokenUri',
+            auth: {
+                type: 'oauth2-client-credentials',
+                clientId: 'my-client-id',
+                tokenUri: 'https://dhis2.org/oauth/token',
+            },
+            expectedType: 'oauth2-client-credentials',
+            expectedDetails: [
+                'clientId:',
+                'my-client-id',
+                'tokenUri:https://dhis2.org/oauth/token',
+            ],
+        },
+    ]
+    it.each(authTestCases)(
+        'should display $name correctly',
+        async ({ auth, expectedType, expectedDetails }) => {
+            const routeWithAuth = {
+                routes: [
+                    {
+                        id: 'test-id',
+                        code: 'test-code',
+                        name: 'test-name',
+                        url: 'https://example.com',
+                        disabled: false,
+                        auth,
+                    },
+                ],
+            }
+            const { findByText } = render(
+                <TestComponentWithRouter
+                    path="/"
+                    customData={{
+                        authorities: [],
+                        routes: routeWithAuth,
+                        me: {},
+                    }}
+                >
+                    <RoutesList />
+                </TestComponentWithRouter>
+            )
+            // Verify auth type is displayed
+            expect(await findByText(expectedType)).toBeInTheDocument()
+            // Verify additional details are visible (no hover needed!)
+            for (const detail of expectedDetails) {
+                expect(
+                    await findByText(detail, { exact: false })
+                ).toBeInTheDocument()
+            }
+        }
+    )
+    it('should display "No authentication" when no auth configured', async () => {
+        const routeWithoutAuth = {
+            routes: [
+                {
+                    id: 'test-id',
+                    code: 'test-code',
+                    name: 'test-name',
+                    url: 'https://example.com',
+                    disabled: false,
+                    auth: null,
+                },
+            ],
+        }
+        const { findByText } = render(
+            <TestComponentWithRouter
+                path="/"
+                customData={{
+                    authorities: [],
+                    routes: routeWithoutAuth,
+                    me: {},
+                }}
+            >
+                <RoutesList />
+            </TestComponentWithRouter>
+        )
+        await findByText('No authentication')
+    })
+    it('should not show type field in details', async () => {
+        const routeWithBasicAuth = {
+            routes: [
+                {
+                    id: 'test-id',
+                    code: 'test-code',
+                    name: 'test-name',
+                    url: 'https://example.com',
+                    disabled: false,
+                    auth: {
+                        type: 'http-basic',
+                        username: 'admin',
+                    },
+                },
+            ],
+        }
+        const { findByText, queryByText } = render(
+            <TestComponentWithRouter
+                path="/"
+                customData={{
+                    authorities: [],
+                    routes: routeWithBasicAuth,
+                    me: {},
+                }}
+            >
+                <RoutesList />
+            </TestComponentWithRouter>
+        )
+        await findByText('http-basic')
+        // Verify 'type:' is NOT shown in the details section
+        expect(queryByText(/^type:/i)).not.toBeInTheDocument()
+    })
+})
+
 const mockRoutes = {
     pager: {
         page: 1,

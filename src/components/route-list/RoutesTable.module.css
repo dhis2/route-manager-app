@@ -4,3 +4,19 @@
     text-wrap: nowrap;
     justify-items: center;
 }
+
+.authDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.authType {
+    font-size: 14px;
+}
+
+.authField {
+    font-size: 12px;
+    color: var(--colors-grey700);
+    line-height: var(--spacers-dp16);
+}

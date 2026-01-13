@@ -11,6 +11,9 @@ import {
     SingleSelectField,
     TextAreaField,
     SingleSelectOption,
+    Tab,
+    TabBar,
+    Legend,
 } from '@dhis2/ui'
 import React, { useState } from 'react'
 import classes from './App.module.css'
@@ -25,12 +28,25 @@ type Verb = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'JSON-PATCH'
 
 type MutationType = 'create' | 'delete' | 'update' | 'replace' | 'json-patch'
 
+type BodyType = 'json' | 'xml' | 'text'
+
 const typesMap: Record<string, MutationType> = {
     POST: 'create',
     DELETE: 'delete',
     PUT: 'update',
     PATCH: 'update',
     'JSON-PATCH': 'json-patch',
+}
+
+const requestBodyTypesMap = {
+    json: {
+        label: 'JSON',
+        contentType: 'application/json',
+    },
+    text: {
+        label: 'Text',
+        contentType: 'text/plain',
+    },
 }
 
 const TestRoute: React.FC<TestRouteProps> = ({
@@ -43,10 +59,11 @@ const TestRoute: React.FC<TestRouteProps> = ({
     const [queryParams, setQueryParams] = useState<string>()
     const [result, setResult] = useState<unknown>('')
     const [loading, setLoading] = useState<boolean>(false)
+    const [bodyType, setBodyType] = useState<BodyType>('json')
 
     const engine = useDataEngine()
 
-    const { show } = useAlert(
+    const { show, hide } = useAlert(
         ({ error }) => {
             if (error) {
                 return i18n.t('Failed to invoke route: {{error}}', {
@@ -64,8 +81,13 @@ const TestRoute: React.FC<TestRouteProps> = ({
         }
     )
 
+    const handleChangeTab = (tab: BodyType) => setBodyType(tab)
+    const tabProps = (tab: BodyType) =>
+        tab === bodyType ? { selected: true } : {}
+
     const handleTestRoute = async () => {
         try {
+            hide()
             setResult(undefined)
             setLoading(true)
 
@@ -93,7 +115,7 @@ const TestRoute: React.FC<TestRouteProps> = ({
             const mutationOptions = {
                 resource,
                 type: typesMap[verb],
-                data: body && JSON.parse(body),
+                data: body && bodyType === 'json' ? JSON.parse(body) : body,
             }
 
             if (verb === 'DELETE') {
@@ -115,6 +137,7 @@ const TestRoute: React.FC<TestRouteProps> = ({
         } catch (error) {
             console.error(error)
             show({ error })
+            setTimeout(hide, 10000)
         } finally {
             setLoading(false)
         }
@@ -214,16 +237,41 @@ const TestRoute: React.FC<TestRouteProps> = ({
                         />
                     )}
 
-                    <TextAreaField
-                        helpText={i18n.t(
-                            'Use valid JSON for this field (i.e. double quoted properties etc..)'
-                        )}
-                        disabled={verb === 'GET'}
-                        value={body}
-                        onChange={({ value }) => setBody(value)}
-                        placeholder={i18n.t('Body to pass to route')}
-                        label={i18n.t('Body of request')}
-                    />
+                    <div className={classes.formContainer}>
+                        <Legend>{i18n.t('Body of request')}</Legend>
+                        <TabBar>
+                            {Object.entries(requestBodyTypesMap).map(
+                                ([type, values]: [BodyType, any]) => (
+                                    <Tab
+                                        {...tabProps(type)}
+                                        disabled={verb === 'GET'}
+                                        className={classes.tabStyle}
+                                        onClick={() => handleChangeTab(type)}
+                                    >
+                                        {values.label}
+                                    </Tab>
+                                )
+                            )}
+                        </TabBar>
+
+                        <div style={{ marginTop: '20px' }}>
+                            <TextAreaField
+                                rows={5}
+                                value={body}
+                                autoGrow={true}
+                                disabled={verb === 'GET'}
+                                onChange={({ value }) => setBody(value)}
+                                placeholder={i18n.t('Body to pass to route')}
+                                helpText={i18n.t(
+                                    'Use valid {{type}} for this field',
+                                    {
+                                        type: requestBodyTypesMap[bodyType]
+                                            .label,
+                                    }
+                                )}
+                            />
+                        </div>
+                    </div>
 
                     <pre>{result && JSON.stringify(result, null, 2)}</pre>
                 </div>

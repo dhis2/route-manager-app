@@ -1,3 +1,24 @@
+## [100.7.1](https://github.com/dhis2/route-manager-app/compare/v100.7.0...v100.7.1) (2026-02-18)
+
+
+### Bug Fixes
+
+* force hide error toast 10 seconds ([#38](https://github.com/dhis2/route-manager-app/issues/38)) ([a90f1c4](https://github.com/dhis2/route-manager-app/commit/a90f1c41627f9eeb59ed352aabbc4a944fc21e86))
+
+# [100.7.0](https://github.com/dhis2/route-manager-app/compare/v100.6.0...v100.7.0) (2026-02-16)
+
+
+### Features
+
+* **DHIS2-20757:** improve authenticatin field display with properly formatted auth details ([#37](https://github.com/dhis2/route-manager-app/issues/37)) ([446c783](https://github.com/dhis2/route-manager-app/commit/446c783e462dba8718a6acb6d7e3f6c261371653))
+
+# [100.6.0](https://github.com/dhis2/route-manager-app/compare/v100.5.0...v100.6.0) (2026-01-13)
+
+
+### Features
+
+* **new-route:** more help text for name and code ([#36](https://github.com/dhis2/route-manager-app/issues/36)) ([6f55179](https://github.com/dhis2/route-manager-app/commit/6f55179a5e2bb913842419870d471e213ac8aabb))
+
 # [100.5.0](https://github.com/dhis2/route-manager-app/compare/v100.4.3...v100.5.0) (2025-11-28)
 
 

@@ -7,6 +7,7 @@
     row-gap: 5px;
     padding: 10px;
 }
+
 .containerForm {
     background-color: var(--colors-grey200);
 }
@@ -36,4 +37,9 @@
     align-items: end;
     font-size: 0.8em;
     margin-top: 20px;
+}
+
+.tabStyle {
+    width: 50%;
+    padding: 5px 16px 5px !important;
 }
