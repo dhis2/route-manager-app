@@ -240,10 +240,10 @@ const UpsertRoute = () => {
                                                 form.change('name', value)
                                             }
                                         }}
-                                        helpText={i18n.t('A unique code for the route, which can be used as the URL segment to run the route, e.g. /api/routes/my-route/run')}
-                                        placeholder={i18n.t(
-                                            'e.g. my-route'
+                                        helpText={i18n.t(
+                                            'A unique code for the route, which can be used as the URL segment to run the route, e.g. /api/routes/my-route/run'
                                         )}
+                                        placeholder={i18n.t('e.g. my-route')}
                                         label={i18n.t('Route code')}
                                     />
 
@@ -254,10 +254,10 @@ const UpsertRoute = () => {
                                         validate={hasValue}
                                         dataTest="input-name"
                                         name="name"
-                                        helpText={i18n.t('A unique, human-readable name for the route')}
-                                        placeholder={i18n.t(
-                                            'e.g. My Route'
+                                        helpText={i18n.t(
+                                            'A unique, human-readable name for the route'
                                         )}
+                                        placeholder={i18n.t('e.g. My Route')}
                                         label={i18n.t('Route Name')}
                                     />
 
