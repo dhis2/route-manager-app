@@ -95,9 +95,28 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
                             <DataTableCell>{route.url}</DataTableCell>
                             <DataTableCell>
                                 {route.auth ? (
-                                    <pre>{JSON.stringify(route.auth)}</pre>
+                                    <div className={styles.authDetails}>
+                                        <div className={styles.authType}>
+                                            {route.auth.type}
+                                        </div>
+                                        {Object.entries(
+                                            route.auth as Record<
+                                                string,
+                                                unknown
+                                            >
+                                        )
+                                            .filter(([key]) => key !== 'type')
+                                            .map(([key, value]) => (
+                                                <div
+                                                    key={key}
+                                                    className={styles.authField}
+                                                >
+                                                    {key}:{String(value)}
+                                                </div>
+                                            ))}
+                                    </div>
                                 ) : (
-                                    'n/a'
+                                    <div>{i18n.t('No authentication')}</div>
                                 )}
                             </DataTableCell>
                             <DataTableCell>
