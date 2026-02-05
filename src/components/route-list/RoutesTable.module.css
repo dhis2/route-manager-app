@@ -17,6 +17,6 @@
 
 .authField {
     font-size: 12px;
-    color: #404b5a; /* colors.grey700 */
-    line-height: 14px;
+    color: var(--colors-grey700);
+    line-height: var(--spacers-dp16);
 }

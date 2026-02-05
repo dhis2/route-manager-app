@@ -550,7 +550,7 @@ describe('authentication display', () => {
             name: 'http-basic with username',
             auth: { type: 'http-basic', username: 'admin' },
             expectedType: 'http-basic',
-            expectedDetails: ['username:', 'admin'],
+            expectedDetails: ['username:admin'],
         },
         {
             name: 'api-token with no additional fields',
@@ -569,8 +569,7 @@ describe('authentication display', () => {
             expectedDetails: [
                 'clientId:',
                 'my-client-id',
-                'tokenUri:',
-                'https://dhis2.org/oauth/token',
+                'tokenUri:https://dhis2.org/oauth/token',
             ],
         },
     ]
@@ -605,7 +604,9 @@ describe('authentication display', () => {
             expect(await findByText(expectedType)).toBeInTheDocument()
             // Verify additional details are visible (no hover needed!)
             for (const detail of expectedDetails) {
-                expect(await findByText(new RegExp(detail))).toBeInTheDocument()
+                expect(
+                    await findByText(detail, { exact: false })
+                ).toBeInTheDocument()
             }
         }
     )

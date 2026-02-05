@@ -95,28 +95,31 @@ const RoutesTable: React.FC<RoutesTableProps> = ({
                             <DataTableCell>{route.url}</DataTableCell>
                             <DataTableCell>
                                 {route.auth ? (
-                                    <div className={styles.authDetails}>
-                                        <div className={styles.authType}>
-                                            {route.auth.type}
+                                    <DataTableCell>
+                                        <div className={styles.authDetails}>
+                                            <span className={styles.authType}>
+                                                {route.auth.type}
+                                            </span>
+                                            {Object.entries(route.auth)
+                                                .filter(
+                                                    ([key]) => key !== 'type'
+                                                )
+                                                .map(([key, value]) => (
+                                                    <span
+                                                        key={key}
+                                                        className={
+                                                            styles.authField
+                                                        }
+                                                    >
+                                                        {key}:{String(value)}
+                                                    </span>
+                                                ))}
                                         </div>
-                                        {Object.entries(
-                                            route.auth as Record<
-                                                string,
-                                                unknown
-                                            >
-                                        )
-                                            .filter(([key]) => key !== 'type')
-                                            .map(([key, value]) => (
-                                                <div
-                                                    key={key}
-                                                    className={styles.authField}
-                                                >
-                                                    {key}:{String(value)}
-                                                </div>
-                                            ))}
-                                    </div>
+                                    </DataTableCell>
                                 ) : (
-                                    <div>{i18n.t('No authentication')}</div>
+                                    <DataTableCell muted>
+                                        {i18n.t('No authentication')}
+                                    </DataTableCell>
                                 )}
                             </DataTableCell>
                             <DataTableCell>
