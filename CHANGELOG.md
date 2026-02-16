@@ -1,3 +1,10 @@
+# [100.7.0](https://github.com/dhis2/route-manager-app/compare/v100.6.0...v100.7.0) (2026-02-16)
+
+
+### Features
+
+* **DHIS2-20757:** improve authenticatin field display with properly formatted auth details ([#37](https://github.com/dhis2/route-manager-app/issues/37)) ([446c783](https://github.com/dhis2/route-manager-app/commit/446c783e462dba8718a6acb6d7e3f6c261371653))
+
 # [100.6.0](https://github.com/dhis2/route-manager-app/compare/v100.5.0...v100.6.0) (2026-01-13)
 
 
