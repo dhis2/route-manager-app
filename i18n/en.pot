@@ -5,44 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-11-25T11:22:10.945Z\n"
-"PO-Revision-Date: 2025-11-25T11:22:10.945Z\n"
-
-msgid "Failed to invoke route: {{error}}"
-msgstr "Failed to invoke route: {{error}}"
-
-msgid "Route invoked successfully"
-msgstr "Route invoked successfully"
-
-msgid "Test Route"
-msgstr "Test Route"
-
-msgid "Cancel"
-msgstr "Cancel"
-
-msgid "Route code"
-msgstr "Route code"
-
-msgid "Route Name"
-msgstr "Route Name"
-
-msgid "Route URL"
-msgstr "Route URL"
-
-msgid "Wildcard path"
-msgstr "Wildcard path"
-
-msgid "Query Params"
-msgstr "Query Params"
-
-msgid "Use valid JSON for this field (i.e. double quoted properties etc..)"
-msgstr "Use valid JSON for this field (i.e. double quoted properties etc..)"
-
-msgid "Body to pass to route"
-msgstr "Body to pass to route"
-
-msgid "Body of request"
-msgstr "Body of request"
+"POT-Creation-Date: 2026-01-28T09:42:26.313Z\n"
+"PO-Revision-Date: 2026-01-28T09:42:26.314Z\n"
 
 msgid "Authorities"
 msgstr "Authorities"
@@ -110,11 +74,27 @@ msgstr "Edit route: {{name}}"
 msgid "Create route"
 msgstr "Create route"
 
-msgid "A unique code for the route"
-msgstr "A unique code for the route"
+msgid ""
+"A unique code for the route, which can be used as the URL segment to run "
+"the route, e.g. /api/routes/my-route/run"
+msgstr ""
+"A unique code for the route, which can be used as the URL segment to run "
+"the route, e.g. /api/routes/my-route/run"
 
-msgid "A unique user-friendly name for the route"
-msgstr "A unique user-friendly name for the route"
+msgid "e.g. my-route"
+msgstr "e.g. my-route"
+
+msgid "Route code"
+msgstr "Route code"
+
+msgid "A unique, human-readable name for the route"
+msgstr "A unique, human-readable name for the route"
+
+msgid "e.g. My Route"
+msgstr "e.g. My Route"
+
+msgid "Route Name"
+msgstr "Route Name"
 
 msgid "e.g. https://postman-echo.com/get"
 msgstr "e.g. https://postman-echo.com/get"
@@ -124,6 +104,9 @@ msgstr "URL for route destination"
 
 msgid "Save Route"
 msgstr "Save Route"
+
+msgid "Cancel"
+msgstr "Cancel"
 
 msgid ""
 "Enter a valid URL, for example http://localhost:5000/path or "
@@ -180,6 +163,9 @@ msgstr "Authentication"
 msgid "No routes configured yet."
 msgstr "No routes configured yet."
 
+msgid "No authentication"
+msgstr "No authentication"
+
 msgid "Enable route"
 msgstr "Enable route"
 
@@ -188,3 +174,30 @@ msgstr "Test route"
 
 msgid "Edit route"
 msgstr "Edit route"
+
+msgid "Failed to invoke route: {{error}}"
+msgstr "Failed to invoke route: {{error}}"
+
+msgid "Route invoked successfully"
+msgstr "Route invoked successfully"
+
+msgid "Test Route"
+msgstr "Test Route"
+
+msgid "Route URL"
+msgstr "Route URL"
+
+msgid "Wildcard path"
+msgstr "Wildcard path"
+
+msgid "Query Params"
+msgstr "Query Params"
+
+msgid "Use valid JSON for this field (i.e. double quoted properties etc..)"
+msgstr "Use valid JSON for this field (i.e. double quoted properties etc..)"
+
+msgid "Body to pass to route"
+msgstr "Body to pass to route"
+
+msgid "Body of request"
+msgstr "Body of request"
