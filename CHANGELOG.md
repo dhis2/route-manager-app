@@ -1,3 +1,10 @@
+## [100.7.1](https://github.com/dhis2/route-manager-app/compare/v100.7.0...v100.7.1) (2026-02-18)
+
+
+### Bug Fixes
+
+* force hide error toast 10 seconds ([#38](https://github.com/dhis2/route-manager-app/issues/38)) ([a90f1c4](https://github.com/dhis2/route-manager-app/commit/a90f1c41627f9eeb59ed352aabbc4a944fc21e86))
+
 # [100.7.0](https://github.com/dhis2/route-manager-app/compare/v100.6.0...v100.7.0) (2026-02-16)
 
 
