@@ -46,7 +46,7 @@ const TestRoute: React.FC<TestRouteProps> = ({
 
     const engine = useDataEngine()
 
-    const { show } = useAlert(
+    const { show, hide } = useAlert(
         ({ error }) => {
             if (error) {
                 return i18n.t('Failed to invoke route: {{error}}', {
@@ -66,6 +66,7 @@ const TestRoute: React.FC<TestRouteProps> = ({
 
     const handleTestRoute = async () => {
         try {
+            hide()
             setResult(undefined)
             setLoading(true)
 
@@ -115,6 +116,7 @@ const TestRoute: React.FC<TestRouteProps> = ({
         } catch (error) {
             console.error(error)
             show({ error })
+            setTimeout(hide, 10000)
         } finally {
             setLoading(false)
         }
