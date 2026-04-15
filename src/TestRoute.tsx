@@ -28,7 +28,7 @@ type Verb = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'JSON-PATCH'
 
 type MutationType = 'create' | 'delete' | 'update' | 'replace' | 'json-patch'
 
-type BodyType = 'json' | 'xml' | 'text'
+type BodyType = 'json' | 'text'
 
 const typesMap: Record<string, MutationType> = {
     POST: 'create',
@@ -38,7 +38,12 @@ const typesMap: Record<string, MutationType> = {
     'JSON-PATCH': 'json-patch',
 }
 
-const requestBodyTypesMap = {
+type BodyTypeInfo = {
+    label: string
+    contentType: string
+}
+
+const requestBodyTypesMap: { [key in BodyType]: BodyTypeInfo } = {
     json: {
         label: 'JSON',
         contentType: 'application/json',
@@ -241,12 +246,15 @@ const TestRoute: React.FC<TestRouteProps> = ({
                         <Legend>{i18n.t('Body of request')}</Legend>
                         <TabBar>
                             {Object.entries(requestBodyTypesMap).map(
-                                ([type, values]: [BodyType, any]) => (
+                                ([type, values]) => (
                                     <Tab
-                                        {...tabProps(type)}
+                                        {...tabProps(type as BodyType)}
+                                        key={values.label}
                                         disabled={verb === 'GET'}
                                         className={classes.tabStyle}
-                                        onClick={() => handleChangeTab(type)}
+                                        onClick={() =>
+                                            handleChangeTab(type as BodyType)
+                                        }
                                     >
                                         {values.label}
                                     </Tab>
@@ -273,7 +281,9 @@ const TestRoute: React.FC<TestRouteProps> = ({
                         </div>
                     </div>
 
-                    <pre>{result && JSON.stringify(result, null, 2)}</pre>
+                    <pre>
+                        {(result && JSON.stringify(result, null, 2)) as string}
+                    </pre>
                 </div>
             </ModalContent>
         </Modal>
