@@ -1,3 +1,10 @@
+# [100.8.0](https://github.com/dhis2/route-manager-app/compare/v100.7.1...v100.8.0) (2026-04-15)
+
+
+### Features
+
+* **DHIS2-20707:** allow test route to support text data ([#39](https://github.com/dhis2/route-manager-app/issues/39)) ([d6ab884](https://github.com/dhis2/route-manager-app/commit/d6ab884a7596daa031dbe0fc1ec0346545aebd97))
+
 ## [100.7.1](https://github.com/dhis2/route-manager-app/compare/v100.7.0...v100.7.1) (2026-02-18)
 
 
