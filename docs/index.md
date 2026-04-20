@@ -2,4 +2,4 @@
 
 ## User
 
--   [Route Manager app](user/route-manager-app.md)
+- [Route Manager app](user/route-manager-app.md)
