@@ -1,3 +1,10 @@
+## [100.8.2](https://github.com/dhis2/route-manager-app/compare/v100.8.1...v100.8.2) (2026-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** correct transifex resource id ([715c51e](https://github.com/dhis2/route-manager-app/commit/715c51eafeba941d44a19d63e37f1403711e4bab))
+
 ## [100.8.1](https://github.com/dhis2/route-manager-app/compare/v100.8.0...v100.8.1) (2026-10-07)
 
 
