@@ -1,3 +1,10 @@
+## [100.8.1](https://github.com/dhis2/route-manager-app/compare/v100.8.0...v100.8.1) (2026-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** enable transifex ([d826858](https://github.com/dhis2/route-manager-app/commit/d8268584d658c5b5d6a5f1a15c204aa333c8da70))
+
 # [100.8.0](https://github.com/dhis2/route-manager-app/compare/v100.7.1...v100.8.0) (2026-04-15)
 
 
