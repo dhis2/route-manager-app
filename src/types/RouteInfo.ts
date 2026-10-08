@@ -44,7 +44,7 @@ export type Authority = {
 export type WrapQueryResponse<
     T,
     S extends string = 'result',
-    R extends string = S
+    R extends string = S,
 > = {
     [K in S]: {
         [K in R]: T
