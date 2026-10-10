@@ -22,37 +22,37 @@ msgid "Authorities"
 msgstr "授权"
 
 msgid "Restrict access to certain authorities"
-msgstr ""
+msgstr "限制特定机构对该系统的访问权限"
 
 msgid "Select authorities"
-msgstr ""
+msgstr "选择相关机构"
 
 msgid "Clear"
 msgstr "清除"
 
 msgid "No authority found"
-msgstr ""
+msgstr "未找到权限"
 
 msgid "Headers"
-msgstr ""
+msgstr "标题"
 
 msgid "Static headers to add to the route"
-msgstr ""
+msgstr "要添加到路由中的静态标头"
 
 msgid "Header name"
-msgstr ""
+msgstr "标题名称"
 
 msgid "Header value"
-msgstr ""
+msgstr "标题值"
 
 msgid "Remove Header"
-msgstr ""
+msgstr "删除标题"
 
 msgid "Add"
 msgstr "添加"
 
 msgid "Authentication Scheme"
-msgstr ""
+msgstr "身份验证方案"
 
 msgid "Username"
 msgstr "用户名"
@@ -61,7 +61,7 @@ msgid "Password"
 msgstr "口令"
 
 msgid "Token"
-msgstr ""
+msgstr "代币"
 
 msgid "Client ID"
 msgstr "客户ID"
@@ -70,48 +70,48 @@ msgid "Client Secret"
 msgstr "客户密钥"
 
 msgid "Token URI"
-msgstr ""
+msgstr "令牌 URI"
 
 msgid "Route saved successfully"
 msgstr "成功保存路线"
 
 msgid "Failed to save route: {{error}}"
-msgstr ""
+msgstr "保存路线失败：{{error}}"
 
 msgid "Edit route: {{name}}"
-msgstr ""
+msgstr "编辑路线：{{name}}"
 
 msgid "Create route"
-msgstr ""
+msgstr "创建路线"
 
 msgid ""
 "A unique code for the route, which can be used as the URL segment to run the"
 " route, e.g. /api/routes/my-route/run"
-msgstr ""
+msgstr "该路由的唯一代码，可作为 URL 片段用于运行该路由，例如 /api/routes/my-route/run"
 
 msgid "e.g. my-route"
-msgstr ""
+msgstr "例如：my-route"
 
 msgid "Route code"
-msgstr ""
+msgstr "路线代码"
 
 msgid "A unique, human-readable name for the route"
-msgstr ""
+msgstr "该路由的一个唯一且易于理解的名称"
 
 msgid "e.g. My Route"
-msgstr ""
+msgstr "例如：我的路线"
 
 msgid "Route Name"
-msgstr ""
+msgstr "路线名称"
 
 msgid "e.g. https://postman-echo.com/get"
-msgstr ""
+msgstr "例如：https://postman-echo.com/get"
 
 msgid "URL for route destination"
-msgstr ""
+msgstr "路由目标的 URL"
 
 msgid "Save Route"
-msgstr ""
+msgstr "保存路线"
 
 msgid "Cancel"
 msgstr "取消"
@@ -119,13 +119,13 @@ msgstr "取消"
 msgid ""
 "Enter a valid URL, for example http://localhost:5000/path or "
 "https://example.com"
-msgstr ""
+msgstr "请输入一个有效的网址，例如 http://localhost:5000/path 或 https://example.com"
 
 msgid "Only http or https URLs are allowed"
-msgstr ""
+msgstr "仅允许使用 http 或 https 格式的网址"
 
 msgid "more actions"
-msgstr ""
+msgstr "更多操作"
 
 msgid "Edit"
 msgstr "编辑"
@@ -143,13 +143,13 @@ msgid "Confirm"
 msgstr "确认"
 
 msgid "Failed to delete route {{message}}"
-msgstr ""
+msgstr "删除路由失败{{message}}"
 
 msgid "Failed to update route {{message}}"
-msgstr ""
+msgstr "更新路由失败{{message}}"
 
 msgid "Create New Route"
-msgstr ""
+msgstr "创建新路线"
 
 msgid "ID"
 msgstr "ID"
@@ -164,46 +164,46 @@ msgid "URL"
 msgstr "URL"
 
 msgid "Authentication"
-msgstr ""
+msgstr "身份验证"
 
 msgid "No routes configured yet."
-msgstr ""
+msgstr "尚未配置任何路线。"
 
 msgid "No authentication"
-msgstr ""
+msgstr "未通过身份验证"
 
 msgid "Enable route"
-msgstr ""
+msgstr "启用路由"
 
 msgid "Test route"
-msgstr ""
+msgstr "测试路线"
 
 msgid "Edit route"
 msgstr "编辑路线"
 
 msgid "Failed to invoke route: {{error}}"
-msgstr ""
+msgstr "调用路由失败：{{error}}"
 
 msgid "Route invoked successfully"
-msgstr ""
+msgstr "路由调用成功"
 
 msgid "Test Route"
-msgstr ""
+msgstr "测试路线"
 
 msgid "Route URL"
-msgstr ""
+msgstr "路由 URL"
 
 msgid "Wildcard path"
-msgstr ""
+msgstr "通配符路径"
 
 msgid "Query Params"
-msgstr ""
+msgstr "查询参数"
 
 msgid "Body of request"
-msgstr ""
+msgstr "请求正文"
 
 msgid "Body to pass to route"
-msgstr ""
+msgstr "要传递给路线的正文"
 
 msgid "Use valid {{type}} for this field"
-msgstr ""
+msgstr "此字段请使用有效的{{type}} "
