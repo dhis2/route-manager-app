@@ -3,13 +3,14 @@
 # Hamza <7amza.it@gmail.com>, 2026
 # Viktor Varland <viktor@dhis2.org>, 2026
 # Andres Miguel Rubio, 2026
+# James Poijo <waheedmagienology94@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2026-03-13T10:26:42.396Z\n"
 "PO-Revision-Date: 2026-10-07 21:16+0000\n"
-"Last-Translator: Andres Miguel Rubio, 2026\n"
+"Last-Translator: James Poijo <waheedmagienology94@gmail.com>, 2026\n"
 "Language-Team: Arabic (https://app.transifex.com/hisp-uio/teams/100509/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -21,37 +22,37 @@ msgid "Authorities"
 msgstr "الصلاحيات"
 
 msgid "Restrict access to certain authorities"
-msgstr ""
+msgstr "تقييد الوصول إلى جهات محددة"
 
 msgid "Select authorities"
-msgstr ""
+msgstr "اختيار الصلاحيات"
 
 msgid "Clear"
 msgstr "مسح"
 
 msgid "No authority found"
-msgstr ""
+msgstr "لم يتم العثور على أي صلاحيات"
 
 msgid "Headers"
-msgstr ""
+msgstr "الترويسات"
 
 msgid "Static headers to add to the route"
-msgstr ""
+msgstr "ترويسات ثابتة لإضافتها إلى المسار"
 
 msgid "Header name"
-msgstr ""
+msgstr "اسم الترويسة"
 
 msgid "Header value"
-msgstr ""
+msgstr "قيمة الترويسة"
 
 msgid "Remove Header"
-msgstr ""
+msgstr "إزالة الترويسة"
 
 msgid "Add"
 msgstr "إضافة"
 
 msgid "Authentication Scheme"
-msgstr ""
+msgstr "مخطط المصادقة"
 
 msgid "Username"
 msgstr "اسم المستخدم"
@@ -60,7 +61,7 @@ msgid "Password"
 msgstr "كلمة المرور"
 
 msgid "Token"
-msgstr ""
+msgstr "الرمز المميز"
 
 msgid "Client ID"
 msgstr "معرف العميل"
@@ -72,7 +73,7 @@ msgid "Token URI"
 msgstr ""
 
 msgid "Route saved successfully"
-msgstr ""
+msgstr "تم حفظ المسار بنجاح"
 
 msgid "Failed to save route: {{error}}"
 msgstr ""
@@ -172,37 +173,39 @@ msgid "No authentication"
 msgstr ""
 
 msgid "Enable route"
-msgstr ""
+msgstr "تمكين المسار"
 
 msgid "Test route"
-msgstr ""
+msgstr "اختبار المسار"
 
 msgid "Edit route"
 msgstr ""
+" \n"
+"تعديل المسار"
 
 msgid "Failed to invoke route: {{error}}"
 msgstr ""
 
 msgid "Route invoked successfully"
-msgstr ""
+msgstr "تم استدعاء المسار بنجاح"
 
 msgid "Test Route"
-msgstr ""
+msgstr "اختبار المسار"
 
 msgid "Route URL"
-msgstr ""
+msgstr "عنوان المسار"
 
 msgid "Wildcard path"
-msgstr ""
+msgstr "مسار أحرف البدل"
 
 msgid "Query Params"
-msgstr ""
+msgstr "معلمات الاستعلام"
 
 msgid "Body of request"
-msgstr ""
+msgstr "نص الطلب"
 
 msgid "Body to pass to route"
-msgstr ""
+msgstr "محتوى الطلب المراد تمريره إلى المسار"
 
 msgid "Use valid {{type}} for this field"
 msgstr ""
