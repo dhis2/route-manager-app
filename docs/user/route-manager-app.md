@@ -66,5 +66,3 @@ Click **Test Route**. DHIS2 calls the upstream server, and the dialog shows the 
 To restrict access to a route for certain users or user groups, click the three dots icon (**more actions**) on the **Routes list** and choose **Sharing**. The **Sharing** dialog opens.
 
 ![Route Sharing](./resources/route-manager-sharing.png)
-
-
