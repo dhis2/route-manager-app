@@ -1,0 +1,205 @@
+# Translators:
+# Saroj Dhakal <lotusnagarkot@gmail.com>, 2026
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2026-03-13T10:26:42.396Z\n"
+"PO-Revision-Date: 2026-10-07 21:16+0000\n"
+"Last-Translator: Saroj Dhakal <lotusnagarkot@gmail.com>, 2026\n"
+"Language-Team: Nepali (https://app.transifex.com/hisp-uio/teams/100509/ne/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ne\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Authorities"
+msgstr ""
+
+msgid "Restrict access to certain authorities"
+msgstr ""
+
+msgid "Select authorities"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "No authority found"
+msgstr ""
+
+msgid "Headers"
+msgstr ""
+
+msgid "Static headers to add to the route"
+msgstr ""
+
+msgid "Header name"
+msgstr ""
+
+msgid "Header value"
+msgstr ""
+
+msgid "Remove Header"
+msgstr ""
+
+msgid "Add"
+msgstr "थप्नुहोस्"
+
+msgid "Authentication Scheme"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Token"
+msgstr ""
+
+msgid "Client ID"
+msgstr ""
+
+msgid "Client Secret"
+msgstr ""
+
+msgid "Token URI"
+msgstr ""
+
+msgid "Route saved successfully"
+msgstr ""
+
+msgid "Failed to save route: {{error}}"
+msgstr ""
+
+msgid "Edit route: {{name}}"
+msgstr ""
+
+msgid "Create route"
+msgstr ""
+
+msgid ""
+"A unique code for the route, which can be used as the URL segment to run the"
+" route, e.g. /api/routes/my-route/run"
+msgstr ""
+
+msgid "e.g. my-route"
+msgstr ""
+
+msgid "Route code"
+msgstr ""
+
+msgid "A unique, human-readable name for the route"
+msgstr ""
+
+msgid "e.g. My Route"
+msgstr ""
+
+msgid "Route Name"
+msgstr ""
+
+msgid "e.g. https://postman-echo.com/get"
+msgstr ""
+
+msgid "URL for route destination"
+msgstr ""
+
+msgid "Save Route"
+msgstr ""
+
+msgid "Cancel"
+msgstr "रद्द गर्नुहोस्"
+
+msgid ""
+"Enter a valid URL, for example http://localhost:5000/path or "
+"https://example.com"
+msgstr ""
+
+msgid "Only http or https URLs are allowed"
+msgstr ""
+
+msgid "more actions"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Sharing"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Are you sure you want to delete this route?"
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "Failed to delete route {{message}}"
+msgstr ""
+
+msgid "Failed to update route {{message}}"
+msgstr ""
+
+msgid "Create New Route"
+msgstr ""
+
+msgid "ID"
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "URL"
+msgstr ""
+
+msgid "Authentication"
+msgstr ""
+
+msgid "No routes configured yet."
+msgstr ""
+
+msgid "No authentication"
+msgstr ""
+
+msgid "Enable route"
+msgstr ""
+
+msgid "Test route"
+msgstr ""
+
+msgid "Edit route"
+msgstr ""
+
+msgid "Failed to invoke route: {{error}}"
+msgstr ""
+
+msgid "Route invoked successfully"
+msgstr ""
+
+msgid "Test Route"
+msgstr ""
+
+msgid "Route URL"
+msgstr ""
+
+msgid "Wildcard path"
+msgstr ""
+
+msgid "Query Params"
+msgstr ""
+
+msgid "Body of request"
+msgstr ""
+
+msgid "Body to pass to route"
+msgstr ""
+
+msgid "Use valid {{type}} for this field"
+msgstr ""
