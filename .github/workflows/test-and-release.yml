@@ -13,9 +13,7 @@ concurrency:
 jobs:
     lint-commits:
         uses: dhis2/workflows-platform/.github/workflows/lint-commits.yml@v1
-    lint:
-        uses: dhis2/workflows-platform/.github/workflows/lint.yml@v1
-    test:
+    lint-and-test:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -25,6 +23,7 @@ jobs:
                   cache: 'yarn'
             - run: yarn install --frozen-lockfile
             - run: yarn build
+            - run: yarn lint
             - run: yarn test --coverage
             - name: Upload coverage reports to Codecov
               uses: codecov/codecov-action@v4.0.1
